@@ -2,6 +2,29 @@
 
 Reusable skills from my everyday AI-assisted workflows. Each skill combines instructions, reference guidance and small utilities so an agent can carry out a specialized task consistently.
 
+## Installation quick start
+
+**1. Install the skill.** Open Codex and paste this prompt into the chat (not a terminal):
+
+```text
+$skill-installer install the breast-mri-annotation skill from https://github.com/maystroh/agents_skills/tree/main/breast-mri-annotation
+```
+
+If the skill does not appear, restart Codex. For terminal-based installation, follow the [Windows, macOS and Linux copy instructions](#option-2-copy-the-skill-folder-manually) below.
+
+**2. Install 3D Slicer.** Download the Stable Release for your operating system from the [official 3D Slicer download page](https://download.slicer.org/), install it, and launch Slicer.
+
+**3. Connect the agent to Slicer.** Configure a supported local Slicer integration and the separate `slicer` skill described in [Requirements](#requirements). This repository does not bundle that connection. Confirm that the agent can run Slicer Python and retrieve a view image before requesting visual review.
+
+**4. Run your first annotation.** Replace the example path with your MRI folder:
+
+```text
+Use $breast-mri-annotation on /path/to/mri-folder.
+Generate the masks, review every sagittal slice in Slicer, and save the results.
+```
+
+See [Requirements](#requirements) for Python dependencies and [Use it](#use-it) for additional examples.
+
 ## Available skills
 
 | Skill | What it helps with |
