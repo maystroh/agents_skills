@@ -29,6 +29,7 @@ Before accepting a draft, apply the [corrective quality gate](references/correct
 - Verify source volume and target node IDs/names. Set the intended draft, reference geometry and source volume. Ensure both named segments exist in the correct order.
 - Enable overall and 2D visibility, per-segment visibility, and useful fill/outline opacity. A visible draft over a hidden original can make edits to the original seem invisible.
 - Select the intended segment and effect. Avoid two editors having competing active effects. Verify the selected draft and painted data correspond to the visible overlay.
+- Before creating or editing the `nipple` segment, set **Modify other segments → Allow overlap** in the active Segment Editor. Verify this setting after switching editors, target segmentations or sessions so nipple edits preserve overlapping `breast_region` voxels. Retain overlap in the working segmentation; nipple priority applies only when deriving the scalar NIfTI labelmap.
 - Apply the user's existing setup script when needed **after** selecting the target. It binds geometry and keyboard shortcuts but does not enable overall visibility. Do not assume running it fixes every issue. Do not change mask voxels merely to test brush operation.
 
 ## Learning from corrections
