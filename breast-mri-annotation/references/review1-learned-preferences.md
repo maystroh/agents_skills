@@ -2,9 +2,11 @@
 
 Read this before generating or reviewing annotations. This portable reference captures workflow lessons from manual corrections. It contains no case-level audit records or patient examples. These are annotation heuristics, not a trained model or a guarantee of accuracy on new patients. Use current anatomy and the user's project-specific corrected references; never transfer pixel coordinates, slice indices, target volumes or numerical trim widths between patients.
 
+Read the [latest correction quality guidance](correction-quality-guidance.md) alongside these lessons. Reviewed corrections can restore broader posterior attachment as well as trim excess. Do not interpret the earlier trimming examples as a universal boundary rule.
+
 ## Posterior boundary
 
-Posterior strips and superior-posterior wedges are common places for a draft to include too much tissue. Trace the breast/chest-wall interface separately from the outer skin. Where visible, follow the anterior surface of the pectoral/chest-wall structure and exclude deeper tissue. Check the superior-posterior wedge and the inferior fold-to-chest transition explicitly. A long straight posterior closure is acceptable only where it follows the visible interface; a convenient polygon edge is not anatomical evidence. Similar intensity in deep chest structures is not a reason to include them.
+Posterior strips and superior-posterior wedges are common places for a draft to include too much tissue. Trace the breast/chest-wall interface separately from the outer skin. Use the visible pectoral/chest-wall structure as a landmark while honoring the user's current ROI convention; do not impose its anterior surface as an automatic cutoff. Exclude clearly separate deep structures without arbitrarily trimming supported attachment. Check the superior-posterior wedge and the inferior fold-to-chest transition explicitly. A long straight posterior closure is acceptable only where it follows the visible interface; a convenient polygon edge is not anatomical evidence. Similar intensity in deep chest structures is not a reason to include them.
 
 Track the interface across adjacent slices when subtle, and record uncertainty instead of inventing a fixed inward offset. A retained posterior boundary in a single corrected example does not validate that boundary strategy for other cases. These checks do not imply that every posterior border should move or that every mask should be eroded.
 

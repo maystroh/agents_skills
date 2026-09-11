@@ -1,6 +1,6 @@
 # Annotation preferences
 
-Read [lessons from reviewed corrections](review1-learned-preferences.md) with these preferences. Apply them to the current anatomy and honor the user's project-specific definitions and corrected references.
+Read [the latest correction quality guidance](correction-quality-guidance.md) and [lessons from reviewed corrections](review1-learned-preferences.md) with these preferences. Apply them to the current anatomy and honor the user's project-specific definitions and corrected references.
 
 ## Breast region
 
@@ -15,3 +15,7 @@ For this workflow, nipple position takes priority over exact borders. A compact 
 ## Corrected references
 
 Keep case-specific corrected masks, before/after snapshots, audit manifests and images in the user's project data directory. Use matching corrected examples when available, preserving them exactly unless revision is requested. If references are unavailable, proceed from the documented preferences and current anatomy. Do not copy patient data into the skill or reuse case-specific polygon-generation scripts as a general segmentation model.
+
+## Current correction priorities
+
+Check both missing posterior/upper/lower attachment and excessive depth; neither blanket trimming nor expansion is justified. Preserve deliberate empty reference slices. Cover the supported nipple feature with a generous local region using physical extent, avoiding tiny fixed-radius seeds and universal directional shifts. Preserve user-defined overlap and nipple portions outside the breast mask. Apply the corrective quality gate before accepting a draft.
