@@ -39,11 +39,13 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 
 <!-- evaluation-history:start -->
 
-| Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ |
-| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 |
+| Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ | Nb tokens |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 | 7,362,686* |
 
 <!-- evaluation-history:end -->
+
+\* **Nb tokens** is the recorded input + output count at the run's saved checkpoint. For the historical baseline, 7,362,686 tokens cover the shared continuation (including development case 0031), not exactly the human-ten cohort; prior pilot work and later calls are excluded. Cached input is already included. A dash means token usage is unavailable.
 
 ### Reading the baseline
 

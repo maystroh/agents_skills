@@ -69,5 +69,13 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "5b433a3504a85be00bc54aed0a32e3bad92630724b3b904c64656e2c863171c1"
+  },
+  {
+    "id": "2026-09-15-token-column",
+    "date": "2026-09-15T15:17:17.311382+00:00",
+    "change": "Add recorded token count to the measured-results table with explicit accounting scope",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "c35d1c7a3f8b152b12eb8c0eaa9ffa944d9526328182b511ea0931c68f2af80d"
   }
 ]

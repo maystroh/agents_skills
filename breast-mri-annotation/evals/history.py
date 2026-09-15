@@ -31,14 +31,24 @@ def current():
     digest=hashlib.sha256(json.dumps([fingerprint(ROOT/'evals'),extra]).encode()).hexdigest()
     return {'skill_sha256':fingerprint(ROOT/'skill'),'evals_sha256':digest}
 
+def recorded_tokens(record):
+    # Older immutable history entries link a report beside the measured JSON.
+    if not record.get('result'):return None
+    result=ROOT/record['result']
+    if result.suffix!='.json':result=result.with_name('metrics.json')
+    if not result.is_file():return None
+    usage=json.loads(result.read_text(encoding='utf-8')).get('token_usage') or {}
+    return (usage.get('delta') or {}).get('total_tokens')
+
 def render(records):
-    lines=['| Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ |',
-           '| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |']
+    lines=['| Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ | Nb tokens |',
+           '| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |']
     for r in records:
         if not r.get('summary'):continue
         s=r.get('summary');vals=[str(s['case_count']),*[f'{s[k]:.4f}' for k in ['breast_dice','union_dice','nipple_dice']],f"{s['nipple_distance_mm']:.2f}"] if s else ['—']*5
         title=r['id'];title=f"[{title}]({r['result']})" if r.get('result') else title
-        lines.append('| '+' | '.join([title,r['change'].replace('|','/').replace('\n',' '),r['status'],*vals])+' |')
+        tokens=recorded_tokens(r)
+        lines.append('| '+' | '.join([title,r['change'].replace('|','/').replace('\n',' '),r['status'],*vals,f'{tokens:,}*' if tokens is not None else '—'])+' |')
     return '\n'.join(lines)
 
 def update(check=False,base=None):
