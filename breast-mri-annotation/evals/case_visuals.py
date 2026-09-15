@@ -38,7 +38,7 @@ def render_comparison(source, pred_union, human_union, pred_nipple, human_nipple
         for mask, color in zip(masks, colors):
             if mask[:, :, k].any():
                 ax.contour(mask[:, :, k].T, levels=[.5], colors=[color], linewidths=1.2)
-        ax.set_title(f'Slice {k} (0-based)', color='white', fontsize=12)
+        ax.set_title(f'Slice {k + 1}', color='white', fontsize=12)
         ax.axis('off')
     fig.suptitle(f'{case} | Human vs Astra', color='white', fontsize=17)
     fig.legend([Line2D([0], [0], color=c, lw=2) for c in colors], labels,

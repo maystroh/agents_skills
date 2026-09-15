@@ -109,5 +109,13 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "251352e5dd8508c383520b20ebf9b867ad6de60023a1531856d0115f2136a6c2"
+  },
+  {
+    "id": "2026-09-15-slice-numbering",
+    "date": "2026-09-15T15:36:55.683312+00:00",
+    "change": "Remove 0-based text from comparison images and display slice numbers starting at 1",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "03bfa5589e6a59d47b02e3ad327c701e5fb46c17afe5baa6657b190004603f6b"
   }
 ]
