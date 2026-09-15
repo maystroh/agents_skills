@@ -41,11 +41,11 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 
 | Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ | Nb tokens |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 | 7,362,686* |
+| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 | ~7.4M |
 
 <!-- evaluation-history:end -->
 
-\* **Nb tokens** is the recorded input + output count at the run's saved checkpoint. ~7.4M tokens were used to accomplish this task.
+**Nb tokens** is the recorded input + output count at the run's saved checkpoint. ~7.4M tokens were used to accomplish this task.
 
 ### Reading the baseline
 

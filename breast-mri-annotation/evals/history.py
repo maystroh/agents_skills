@@ -48,7 +48,7 @@ def render(records):
         s=r.get('summary');vals=[str(s['case_count']),*[f'{s[k]:.4f}' for k in ['breast_dice','union_dice','nipple_dice']],f"{s['nipple_distance_mm']:.2f}"] if s else ['—']*5
         title=r['id'];title=f"[{title}]({r['result']})" if r.get('result') else title
         tokens=recorded_tokens(r)
-        lines.append('| '+' | '.join([title,r['change'].replace('|','/').replace('\n',' '),r['status'],*vals,f'{tokens:,}*' if tokens is not None else '—'])+' |')
+        lines.append('| '+' | '.join([title,r['change'].replace('|','/').replace('\n',' '),r['status'],*vals,(f'~{tokens / 1_000_000:.1f}M' if tokens >= 1_000_000 else f'{tokens:,}') if tokens is not None else '—'])+' |')
     return '\n'.join(lines)
 
 def update(check=False,base=None):
