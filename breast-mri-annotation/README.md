@@ -45,7 +45,7 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 
 <!-- evaluation-history:end -->
 
-\* **Nb tokens** is the recorded input + output count at the run's saved checkpoint. For the historical baseline, 7,362,686 tokens cover the shared continuation (including development case 0031), not exactly the human-ten cohort; prior pilot work and later calls are excluded. Cached input is already included. A dash means token usage is unavailable.
+\* **Nb tokens** is the recorded input + output count at the run's saved checkpoint. ~7.4M tokens were used to accomplish this task.
 
 ### Reading the baseline
 

@@ -85,5 +85,13 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "4fb65ad0e6507bd7297faa4c74ad42189a1d7b43ede6ea4b15bad527dfd55d44"
+  },
+  {
+    "id": "2026-09-15-token-wording",
+    "date": "2026-09-15T15:25:26.894347+00:00",
+    "change": "Simplify the README token footnote to approximately 7.4M tokens used for the task",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "33c685a8a766a6a82a763e76ee7717b01990b25748eb3b2b153b9ba76aa537c8"
   }
 ]
