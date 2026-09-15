@@ -43,6 +43,7 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 |
 | 2026-09-15-packaging | Split skill/evals, preserve QIN human-ten baseline, add portable scorer and version-history checks; fresh annotation pending | pending evaluation | — | — | — | — | — |
+| 2026-09-15-portable-fingerprints | Normalize relative-path ordering across Windows/Linux; version-check regression test; annotation results unchanged | pending evaluation | — | — | — | — | — |
 
 <!-- evaluation-history:end -->
 

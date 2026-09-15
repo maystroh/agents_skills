@@ -10,7 +10,9 @@ END='<!-- evaluation-history:end -->'
 
 def fingerprint(folder):
     entries=[]
-    for f in sorted(folder.rglob('*')):
+    # Path ordering is case-insensitive on Windows, case-sensitive on Linux.
+    # Sort normalized relative strings explicitly for identical fingerprints.
+    for f in sorted(folder.rglob('*'),key=lambda p:p.relative_to(folder).as_posix()):
         rel=f.relative_to(folder)
         if not f.is_file() or any(x in rel.parts for x in ['__pycache__','.deps','.venv','results','runs','batches','archive','data']):continue
         if f.name=='history.json':continue
