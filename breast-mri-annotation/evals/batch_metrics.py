@@ -12,6 +12,7 @@ from scipy.spatial import cKDTree
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from case_visuals import render_comparison, write_case_report
 
 def write_json(path,data):
     Path(path).write_text(json.dumps(data,indent=2,allow_nan=False),encoding='utf-8')
@@ -110,9 +111,8 @@ def score_case(run,encoding,output=None):
     mg,_=map_array(gu,g.affine,p.shape,p.affine);mn,_=map_array(gn,g.affine,p.shape,p.affine)
     source=nib.load(next((run/'input').glob('*.nii.gz'))).get_fdata()
     counts=[int(np.count_nonzero((pu[:,:,k])^(mg[:,:,k]>0))) for k in range(p.shape[2])]
-    pk=int(round(np.argwhere(pn)[:,2].mean())) if pn.any() else p.shape[2]//2
-    selected=list(dict.fromkeys([int(np.argmax(counts)),pk,0,p.shape[2]-1]))
-    for group,indices in [('comparison',selected),('all_slice_differences',list(range(p.shape[2])))]:
+    render_comparison(source,pu,mg>0,pn,mn>0,output,m['case'])
+    for group,indices in [('all_slice_differences',list(range(p.shape[2])))]:
         cols=min(5,len(indices));rows=(len(indices)+cols-1)//cols
         fig,axes=plt.subplots(rows,cols,figsize=(cols*3.2,rows*3.2),squeeze=False)
         for ax in axes.flat:ax.axis('off')
@@ -124,35 +124,7 @@ def score_case(run,encoding,output=None):
             ax.set_title(f'Native k={k}; disagree={counts[k]} vox',fontsize=9)
         fig.suptitle(m['case']+' | Astra green / human cyan | nipples red / orange',fontsize=11)
         fig.tight_layout();fig.savefig(output/(group+'.png'),dpi=120);plt.close(fig)
-    breast=full['breast_exclusive'];nipple=full['nipple'];union=full['breast_nipple_union']
-    worst=sorted(per_slice,key=lambda x:x['breast_nipple_union']['false_positive_voxels']+x['breast_nipple_union']['false_negative_voxels'],reverse=True)[:3]
-    lines=[f'# {m["case"]}: human vs Astra', '',
-      ('**Development example: exclude from independent evaluation totals.**' if r['development_case'] else 'Fresh source-only prediction; human mask opened after prediction freeze.'),'',
-      '| Metric | Full reference | Common field of view |','|---|---:|---:|']
-    for name in classes:lines.append(f'| {name} Dice | {format_number(full[name]["dice"])} | {format_number(common[name]["dice"])} |')
-    lines += [f'| Nipple centroid distance (original RAS mm) | {format_number(localization["distance_mm"],2)} | See geometry notes |','',
-       '## Differences','',
-       f'- Breast: Astra {breast["prediction_volume_ml"]:.2f} mL; human {breast["human_volume_ml"]:.2f} mL; signed volume bias {breast["volume_bias_ml"]:+.2f} mL.',
-       f'- Union: {union["false_negative_voxels"]:,} human-labelled voxels missed; {union["false_positive_voxels"]:,} Astra-only voxels. These are comparison differences, not automatic proof of anatomical error.',
-       f'- Nipple: Astra {nipple["prediction_voxels"]:,} voxels vs human {nipple["human_voxels"]:,}; status {localization["status"]}.',
-       f'- Nipple centroid Astra: {pc}; human: {gc}; delta Astra minus human: {localization["delta_ras_mm"]} mm.',
-       '- Largest union disagreements on reference slices: '+', '.join(str(x['reference_k']) for x in worst)+'.',
-       f'- Breast boundary HD95: {format_number(breast["hd95_mm"],2)} mm; average symmetric surface distance: {format_number(breast["average_symmetric_surface_distance_mm"],2)} mm.', '',
-       '## Geometry and review','',
-       f'- Source {p.shape}; reference {g.shape[:3]}; encoding {encoding}.',
-       f'- Human foreground outside source coverage: {r["geometry"]["human_foreground_outside_source"]:,} voxels. Prediction foreground outside reference: {r["geometry"]["prediction_foreground_outside_reference"]:,}.',
-       f'- Actual Slicer slices reviewed: {m["slicer_reviewed_indices"]}. Status: {m["annotation_status"]}. Agent review is not user approval.',
-       '- Raw overlap is compared only when the human file preserves separate breast and nipple components. Scalar labels cannot recover that overlap.', '',
-       '## Source-only annotation notes','']+['- '+s for s in m.get('notes',[])]+['',
-       '## Files','',
-       '- `metrics.json`: all scores, centroids, volumes, hashes, geometry and per-slice counts.',
-       '- `per_slice_metrics.json`: slice-level differences.',
-       '- `union_difference.nii.gz`: 0 neither, 1 Astra-only, 2 human-only, 3 agreement.',
-       '- `all_slice_differences.png`: every native MRI slice.',
-       '- Tokens are metered for the shared batch, not individually for this case; see the batch usage file.','',
-       '![Selected comparisons](comparison.png)','', '![Every slice](all_slice_differences.png)']
-    (output/'report.md').write_text('\n'.join(lines),encoding='utf-8')
-    (output/'report.html').write_text('<!doctype html><meta charset="utf-8"><title>'+m['case']+'</title><style>body{font:16px system-ui;max-width:1150px;margin:32px auto;padding:20px;color:#142333}pre{white-space:pre-wrap}img{width:100%}</style><h1>'+m['case']+'</h1><pre>'+html.escape('\n'.join(lines[:-4]))+'</pre><img src="comparison.png"><img src="all_slice_differences.png">',encoding='utf-8')
+    write_case_report(output,m['case'])
     return r
 
 def summarize(results):

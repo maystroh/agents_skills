@@ -28,7 +28,7 @@ python -m unittest test_metrics test_batch_metrics test_history test_run_eval -v
 python run_eval.py --dataset /path/to/dataset --prediction-manifest /path/to/predictions.json --output /path/to/local-run-v2 --model gpt-6-astra --effort medium
 ```
 
-5. Inspect reports. Keep the generated directory local: it contains images, masks and absolute paths. Publish only scrubbed numerical/text results in `results/<run-id>/metrics.json`, retaining `status`, `cohort`, `fingerprints`, `totals`, model, reference hashes and review provenance. Never copy MRI, labelmaps or screenshots into Git. Raw predicted breast/nipple overlap cannot be recovered from scalar NIfTI; those measurements are null, not inferred.
+5. Inspect reports. Keep the generated directory local: it contains images, masks and absolute paths. Publish only scrubbed numerical results and selected comparison figures in `results/<run-id>/metrics.json`, retaining `status`, `cohort`, `fingerprints`, `totals`, model, reference hashes and review provenance. Keep raw MRI volumes, labelmaps and full review screenshots outside Git. Raw predicted breast/nipple overlap cannot be recovered from scalar NIfTI; those measurements are null, not inferred.
 6. Append a measured entry and commit code, result and README together:
 
 ```bash
@@ -51,3 +51,7 @@ Measure repeated runs before attributing a difference to a prompt change. Re-sco
 `results/2026-09-15-local-v1/` preserves the measured human-ten baseline and per-case text/numeric differences. `development-0031.json` is separate. The original local reference version predates the public split-label format; matching case IDs do not prove voxel equality. No new annotation or scoring against downloaded HF masks is claimed for the historical baseline.
 
 `archive/session_20260915/` preserves the full evaluation session's code, text, case-specific contour decisions and evaluated instruction snapshot. Machine-specific paths are replaced with placeholders. These helpers are audit material, **not a portable predictor**: several have session-specific paths, slicing assumptions, Slicer setup or review attestations. Do not run historical freeze helpers to mark unseen images reviewed, or reuse their anchors when evaluating a changed skill. The active portable entry point is `run_eval.py`.
+
+## Compact case reports
+
+Each case page shows one image with three native slices and a color legend. Selection includes the largest union disagreement and the peak-area nipple slice for each annotation; duplicate slices are filled with separated disagreement slices. Human contours are mapped to the source MRI by physical coordinates. Full measurements and review notes remain in metrics JSON.

@@ -27,7 +27,7 @@ breast-mri-annotation/
     ├── batch_metrics.py      # reports and aggregate metrics
     ├── history.py            # append history and render this table
     ├── history.json          # append-only evaluated/pending entries
-    ├── results/              # public numerical results and text reports
+    ├── results/              # public metrics and three-slice comparison images
     └── archive/              # historical annotation helpers and decisions
 ```
 
@@ -65,4 +65,4 @@ Before reporting an improvement, use the same case list, reference hashes, model
 
 Dataset: [h2thez3/breast-mri-sagitall-landmarks](https://huggingface.co/datasets/h2thez3/breast-mri-sagitall-landmarks#breast-mri-sagittal-landmarks), derived from TCIA QIN-BREAST. The dataset card describes the original collection and CC BY 3.0 attribution requirements. Cite Li et al. (2016), *Data From QIN-BREAST (Version 2)*, [doi:10.7937/K9/TCIA.2016.21JUEBH0](https://doi.org/10.7937/K9/TCIA.2016.21JUEBH0) when using its data.
 
-MRI volumes, labelmaps, screenshots and local environment files stay outside this Git repository; numerical results, methodology, instructions and code are versioned here.
+MRI volumes, labelmaps, full review screenshots and local environment files stay outside this Git repository. Selected three-slice comparison figures, numerical results, methodology, instructions and code are versioned here.

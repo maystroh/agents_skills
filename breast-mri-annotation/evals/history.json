@@ -77,5 +77,13 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "c35d1c7a3f8b152b12eb8c0eaa9ffa944d9526328182b511ea0931c68f2af80d"
+  },
+  {
+    "id": "2026-09-15-visual-case-reports",
+    "date": "2026-09-15T15:24:24.686254+00:00",
+    "change": "Replace verbose case pages with one three-slice human/Astra comparison image; retain full metrics in JSON",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "4fb65ad0e6507bd7297faa4c74ad42189a1d7b43ede6ea4b15bad527dfd55d44"
   }
 ]
