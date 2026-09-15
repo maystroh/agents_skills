@@ -1,0 +1,1017 @@
+{
+  "case": "QIN-BREAST-01-0009",
+  "development_case": false,
+  "scored_at": "2026-09-15T15:49:14.167671+02:00",
+  "annotation_status": "reviewed_frozen",
+  "source": "<MRI_DATA>\\sagitall_annotations\\skill_evals\\qin\\QIN-BREAST-01-0009.nii.gz",
+  "source_sha256": "5c1aa20b5bd2ac9bcddd16fe6169b89ed8409e8b8b51880479e985dd3016c71b",
+  "prediction": "<LOCAL_WORKSPACE>\\breast-mri-evals\\batches\\20260915_151621\\QIN-BREAST-01-0009\\QIN-BREAST-01-0009_mask_astra_20260915_154038.nii.gz",
+  "prediction_sha256": "ecbc6dcd82b068c5c769dd343bcb11d00d27951134ffb833438beecb88d1766f",
+  "human_reference": "<LOCAL_WORKSPACE>\\breast-mri-evals\\batches\\20260915_151621\\QIN-BREAST-01-0009\\reference\\QIN-BREAST-01-0009_mask_20260909_165527.nii.gz",
+  "human_reference_sha256": "dc846275b98ec725aee89225f46e8800ec96e2e06bf27f9a046a3afc02465b3e",
+  "human_encoding": "scalar",
+  "prediction_frozen_at": "2026-09-15T15:48:00.067853+02:00",
+  "slicer_reviewed_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "full_reference_grid": {
+    "breast_exclusive": {
+      "dice": 0.7619303845197477,
+      "jaccard": 0.615418046766451,
+      "precision": 0.8000856091088092,
+      "recall": 0.7272486751900645,
+      "true_positive_voxels": 93458,
+      "false_positive_voxels": 23352,
+      "false_negative_voxels": 35051,
+      "prediction_voxels": 116810,
+      "human_voxels": 128509,
+      "voxel_volume_mm3": 8.88888941870796,
+      "prediction_volume_ml": 1038.3111729992768,
+      "human_volume_ml": 1142.3022903087412,
+      "false_positive_volume_ml": 207.57334570566826,
+      "false_negative_volume_ml": 311.5644630151327,
+      "volume_bias_ml": -103.99111730946441,
+      "volume_ratio": 0.9089635745356356,
+      "prediction_centroid_ras_mm": [
+        114.38143138429929,
+        28.696658665071908,
+        5.784126991909687
+      ],
+      "human_centroid_ras_mm": [
+        114.71669299426499,
+        36.03090416544572,
+        16.39060741727124
+      ],
+      "centroid_delta_ras_mm": [
+        -0.3352616099656984,
+        -7.334245500373811,
+        -10.606480425361553
+      ],
+      "centroid_distance_mm": 12.89965055419906,
+      "prediction_components_6_connected": 1,
+      "human_components_6_connected": 1,
+      "hd95_mm": 30.337446049123134,
+      "average_symmetric_surface_distance_mm": 6.428531009563194,
+      "status": "both_present"
+    },
+    "nipple": {
+      "dice": 0.6086956521739131,
+      "jaccard": 0.4375,
+      "precision": 0.8,
+      "recall": 0.49122807017543857,
+      "true_positive_voxels": 420,
+      "false_positive_voxels": 105,
+      "false_negative_voxels": 435,
+      "prediction_voxels": 525,
+      "human_voxels": 855,
+      "voxel_volume_mm3": 8.88888941870796,
+      "prediction_volume_ml": 4.666666944821679,
+      "human_volume_ml": 7.600000452995306,
+      "false_positive_volume_ml": 0.9333333889643358,
+      "false_negative_volume_ml": 3.8666668971379625,
+      "volume_bias_ml": -2.933333508173627,
+      "volume_ratio": 0.6140350877192983,
+      "prediction_centroid_ras_mm": [
+        127.5,
+        103.32953201498304,
+        4.666665554046631
+      ],
+      "human_centroid_ras_mm": [
+        124.90350877192982,
+        104.44757159160591,
+        8.340739737616644
+      ],
+      "centroid_delta_ras_mm": [
+        2.596491228070178,
+        -1.1180395766228628,
+        -3.6740741835700135
+      ],
+      "centroid_distance_mm": 4.635795541082035,
+      "prediction_components_6_connected": 1,
+      "human_components_6_connected": 1,
+      "hd95_mm": 7.777102597447829,
+      "average_symmetric_surface_distance_mm": 2.203567659451365,
+      "status": "both_present"
+    },
+    "breast_nipple_union": {
+      "dice": 0.7640971386183163,
+      "jaccard": 0.6182501574307305,
+      "precision": 0.8032641581795713,
+      "recall": 0.728572091153644,
+      "true_positive_voxels": 94251,
+      "false_positive_voxels": 23084,
+      "false_negative_voxels": 35113,
+      "prediction_voxels": 117335,
+      "human_voxels": 129364,
+      "voxel_volume_mm3": 8.88888941870796,
+      "prediction_volume_ml": 1042.9778399440986,
+      "human_volume_ml": 1149.9022907617364,
+      "false_positive_volume_ml": 205.19112334145456,
+      "false_negative_volume_ml": 312.11557415909255,
+      "volume_bias_ml": -106.92445081763805,
+      "volume_ratio": 0.9070143161930676,
+      "prediction_centroid_ras_mm": [
+        114.4401286913538,
+        29.030593624876758,
+        5.779127057918316
+      ],
+      "human_centroid_ras_mm": [
+        114.78402028385023,
+        36.48308754451074,
+        16.337403768140845
+      ],
+      "centroid_delta_ras_mm": [
+        -0.3438915924964192,
+        -7.45249391963398,
+        -10.558276710222529
+      ],
+      "centroid_distance_mm": 12.92807542286162,
+      "prediction_components_6_connected": 1,
+      "human_components_6_connected": 1,
+      "hd95_mm": 30.353371011787466,
+      "average_symmetric_surface_distance_mm": 6.4397483852437585,
+      "status": "both_present"
+    }
+  },
+  "common_field_of_view": {
+    "breast_exclusive": {
+      "dice": 0.7619303845197477,
+      "jaccard": 0.615418046766451,
+      "precision": 0.8000856091088092,
+      "recall": 0.7272486751900645,
+      "true_positive_voxels": 93458,
+      "false_positive_voxels": 23352,
+      "false_negative_voxels": 35051,
+      "prediction_voxels": 116810,
+      "human_voxels": 128509,
+      "voxel_volume_mm3": 8.88888941870796,
+      "prediction_volume_ml": 1038.3111729992768,
+      "human_volume_ml": 1142.3022903087412,
+      "false_positive_volume_ml": 207.57334570566826,
+      "false_negative_volume_ml": 311.5644630151327,
+      "volume_bias_ml": -103.99111730946441,
+      "volume_ratio": 0.9089635745356356,
+      "prediction_centroid_ras_mm": [
+        114.38143138429929,
+        28.696658665071908,
+        5.784126991909687
+      ],
+      "human_centroid_ras_mm": [
+        114.71669299426499,
+        36.03090416544572,
+        16.39060741727124
+      ],
+      "centroid_delta_ras_mm": [
+        -0.3352616099656984,
+        -7.334245500373811,
+        -10.606480425361553
+      ],
+      "centroid_distance_mm": 12.89965055419906,
+      "prediction_components_6_connected": 1,
+      "human_components_6_connected": 1,
+      "hd95_mm": null,
+      "average_symmetric_surface_distance_mm": null,
+      "status": "both_present"
+    },
+    "nipple": {
+      "dice": 0.6086956521739131,
+      "jaccard": 0.4375,
+      "precision": 0.8,
+      "recall": 0.49122807017543857,
+      "true_positive_voxels": 420,
+      "false_positive_voxels": 105,
+      "false_negative_voxels": 435,
+      "prediction_voxels": 525,
+      "human_voxels": 855,
+      "voxel_volume_mm3": 8.88888941870796,
+      "prediction_volume_ml": 4.666666944821679,
+      "human_volume_ml": 7.600000452995306,
+      "false_positive_volume_ml": 0.9333333889643358,
+      "false_negative_volume_ml": 3.8666668971379625,
+      "volume_bias_ml": -2.933333508173627,
+      "volume_ratio": 0.6140350877192983,
+      "prediction_centroid_ras_mm": [
+        127.5,
+        103.32953201498304,
+        4.666665554046631
+      ],
+      "human_centroid_ras_mm": [
+        124.90350877192982,
+        104.44757159160591,
+        8.340739737616644
+      ],
+      "centroid_delta_ras_mm": [
+        2.596491228070178,
+        -1.1180395766228628,
+        -3.6740741835700135
+      ],
+      "centroid_distance_mm": 4.635795541082035,
+      "prediction_components_6_connected": 1,
+      "human_components_6_connected": 1,
+      "hd95_mm": null,
+      "average_symmetric_surface_distance_mm": null,
+      "status": "both_present"
+    },
+    "breast_nipple_union": {
+      "dice": 0.7640971386183163,
+      "jaccard": 0.6182501574307305,
+      "precision": 0.8032641581795713,
+      "recall": 0.728572091153644,
+      "true_positive_voxels": 94251,
+      "false_positive_voxels": 23084,
+      "false_negative_voxels": 35113,
+      "prediction_voxels": 117335,
+      "human_voxels": 129364,
+      "voxel_volume_mm3": 8.88888941870796,
+      "prediction_volume_ml": 1042.9778399440986,
+      "human_volume_ml": 1149.9022907617364,
+      "false_positive_volume_ml": 205.19112334145456,
+      "false_negative_volume_ml": 312.11557415909255,
+      "volume_bias_ml": -106.92445081763805,
+      "volume_ratio": 0.9070143161930676,
+      "prediction_centroid_ras_mm": [
+        114.4401286913538,
+        29.030593624876758,
+        5.779127057918316
+      ],
+      "human_centroid_ras_mm": [
+        114.78402028385023,
+        36.48308754451074,
+        16.337403768140845
+      ],
+      "centroid_delta_ras_mm": [
+        -0.3438915924964192,
+        -7.45249391963398,
+        -10.558276710222529
+      ],
+      "centroid_distance_mm": 12.92807542286162,
+      "prediction_components_6_connected": 1,
+      "human_components_6_connected": 1,
+      "hd95_mm": null,
+      "average_symmetric_surface_distance_mm": null,
+      "status": "both_present"
+    }
+  },
+  "nipple_localization": {
+    "prediction_centroid_ras_mm": [
+      127.5,
+      103.32953201498304,
+      4.666665554046631
+    ],
+    "human_centroid_ras_mm": [
+      124.90350877192982,
+      104.44757159160591,
+      8.340739737616644
+    ],
+    "delta_ras_mm": [
+      2.596491228070178,
+      -1.1180395766228628,
+      -3.6740741835700135
+    ],
+    "distance_mm": 4.635795541082035,
+    "status": "both_present"
+  },
+  "raw_overlapping_breast_comparison": null,
+  "raw_overlap_voxels": {
+    "prediction": 380,
+    "human": null
+  },
+  "geometry": {
+    "source_shape": [
+      192,
+      192,
+      20
+    ],
+    "reference_shape": [
+      192,
+      192,
+      20
+    ],
+    "source_affine": [
+      [
+        -0.0,
+        -0.0,
+        -5.0,
+        167.5
+      ],
+      [
+        -1.3333333730697632,
+        -0.0,
+        0.0,
+        169.33334350585938
+      ],
+      [
+        0.0,
+        -1.3333333730697632,
+        -0.0,
+        127.33333587646484
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "reference_affine": [
+      [
+        -0.0,
+        0.0,
+        5.0,
+        72.5
+      ],
+      [
+        -1.3333333730697632,
+        -0.0,
+        -0.0,
+        169.33334350585938
+      ],
+      [
+        0.0,
+        -1.3333333730697632,
+        0.0,
+        127.33333587646484
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "reference_to_prediction_ijk": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        19.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "method": "Prediction mapped to full reference grid by nearest neighbour; zero outside coverage. Centroids use original physical coordinates.",
+    "human_foreground_outside_source": 0,
+    "human_nipple_outside_source": 0,
+    "prediction_foreground_outside_reference": 0
+  },
+  "notes": [
+    "Peripheral slices 0-1 are poorly supported and excluded. Local anterior projection around k7-9 selected; upper separate bulge is not used as nipple.",
+    "Corrected visible anterior offsets using local source-gradient boundary fits in inspected case-specific row spans; re-centered neighboring nipple slices on supported surface. No human mask used.",
+    "Corrected visible anterior offsets using local source-gradient boundary fits in inspected case-specific row spans; re-centered neighboring nipple slices on supported surface. No human mask used."
+  ],
+  "per_slice": [
+    {
+      "reference_k": 0,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        19.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7971277649389238,
+        "prediction_voxels": 5829,
+        "human_voxels": 6287,
+        "false_positive_voxels": 1000,
+        "false_negative_voxels": 1458
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7971277649389238,
+        "prediction_voxels": 5829,
+        "human_voxels": 6287,
+        "false_positive_voxels": 1000,
+        "false_negative_voxels": 1458
+      }
+    },
+    {
+      "reference_k": 1,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        18.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.804339219257265,
+        "prediction_voxels": 6051,
+        "human_voxels": 6578,
+        "false_positive_voxels": 972,
+        "false_negative_voxels": 1499
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.804339219257265,
+        "prediction_voxels": 6051,
+        "human_voxels": 6578,
+        "false_positive_voxels": 972,
+        "false_negative_voxels": 1499
+      }
+    },
+    {
+      "reference_k": 2,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        17.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7988488783943329,
+        "prediction_voxels": 6325,
+        "human_voxels": 7227,
+        "false_positive_voxels": 912,
+        "false_negative_voxels": 1814
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7988488783943329,
+        "prediction_voxels": 6325,
+        "human_voxels": 7227,
+        "false_positive_voxels": 912,
+        "false_negative_voxels": 1814
+      }
+    },
+    {
+      "reference_k": 3,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        16.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8105157304984916,
+        "prediction_voxels": 6551,
+        "human_voxels": 7371,
+        "false_positive_voxels": 909,
+        "false_negative_voxels": 1729
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.8105157304984916,
+        "prediction_voxels": 6551,
+        "human_voxels": 7371,
+        "false_positive_voxels": 909,
+        "false_negative_voxels": 1729
+      }
+    },
+    {
+      "reference_k": 4,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        15.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7842031029619182,
+        "prediction_voxels": 6749,
+        "human_voxels": 8140,
+        "false_positive_voxels": 911,
+        "false_negative_voxels": 2302
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7842031029619182,
+        "prediction_voxels": 6749,
+        "human_voxels": 8140,
+        "false_positive_voxels": 911,
+        "false_negative_voxels": 2302
+      }
+    },
+    {
+      "reference_k": 5,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        14.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8019566367001586,
+        "prediction_voxels": 6867,
+        "human_voxels": 8261,
+        "false_positive_voxels": 801,
+        "false_negative_voxels": 2195
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.8019566367001586,
+        "prediction_voxels": 6867,
+        "human_voxels": 8261,
+        "false_positive_voxels": 801,
+        "false_negative_voxels": 2195
+      }
+    },
+    {
+      "reference_k": 6,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        13.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7843034663178549,
+        "prediction_voxels": 6990,
+        "human_voxels": 8300,
+        "false_positive_voxels": 994,
+        "false_negative_voxels": 2304
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7843034663178549,
+        "prediction_voxels": 6990,
+        "human_voxels": 8300,
+        "false_positive_voxels": 994,
+        "false_negative_voxels": 2304
+      }
+    },
+    {
+      "reference_k": 7,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        12.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7860207612456748,
+        "prediction_voxels": 7101,
+        "human_voxels": 7349,
+        "false_positive_voxels": 1422,
+        "false_negative_voxels": 1670
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7860207612456748,
+        "prediction_voxels": 7101,
+        "human_voxels": 7349,
+        "false_positive_voxels": 1422,
+        "false_negative_voxels": 1670
+      }
+    },
+    {
+      "reference_k": 8,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        11.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8115477145148356,
+        "prediction_voxels": 7127,
+        "human_voxels": 7837,
+        "false_positive_voxels": 1055,
+        "false_negative_voxels": 1765
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.8115477145148356,
+        "prediction_voxels": 7127,
+        "human_voxels": 7837,
+        "false_positive_voxels": 1055,
+        "false_negative_voxels": 1765
+      }
+    },
+    {
+      "reference_k": 9,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        10.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8080527594585214,
+        "prediction_voxels": 7099,
+        "human_voxels": 7306,
+        "false_positive_voxels": 1279,
+        "false_negative_voxels": 1486
+      },
+      "nipple": {
+        "dice": 0.4460431654676259,
+        "prediction_voxels": 71,
+        "human_voxels": 207,
+        "false_positive_voxels": 9,
+        "false_negative_voxels": 145
+      },
+      "breast_nipple_union": {
+        "dice": 0.817816522509024,
+        "prediction_voxels": 7170,
+        "human_voxels": 7513,
+        "false_positive_voxels": 1166,
+        "false_negative_voxels": 1509
+      }
+    },
+    {
+      "reference_k": 10,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        9.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8109697816337034,
+        "prediction_voxels": 6989,
+        "human_voxels": 6612,
+        "false_positive_voxels": 1474,
+        "false_negative_voxels": 1097
+      },
+      "nipple": {
+        "dice": 0.6686046511627907,
+        "prediction_voxels": 121,
+        "human_voxels": 223,
+        "false_positive_voxels": 6,
+        "false_negative_voxels": 108
+      },
+      "breast_nipple_union": {
+        "dice": 0.8212262459662961,
+        "prediction_voxels": 7110,
+        "human_voxels": 6835,
+        "false_positive_voxels": 1384,
+        "false_negative_voxels": 1109
+      }
+    },
+    {
+      "reference_k": 11,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        8.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8225658297611758,
+        "prediction_voxels": 6820,
+        "human_voxels": 6244,
+        "false_positive_voxels": 1447,
+        "false_negative_voxels": 871
+      },
+      "nipple": {
+        "dice": 0.7560321715817694,
+        "prediction_voxels": 141,
+        "human_voxels": 232,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 91
+      },
+      "breast_nipple_union": {
+        "dice": 0.8275656768623949,
+        "prediction_voxels": 6961,
+        "human_voxels": 6476,
+        "false_positive_voxels": 1401,
+        "false_negative_voxels": 916
+      }
+    },
+    {
+      "reference_k": 12,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        7.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.8209507973698134,
+        "prediction_voxels": 6657,
+        "human_voxels": 6574,
+        "false_positive_voxels": 1226,
+        "false_negative_voxels": 1143
+      },
+      "nipple": {
+        "dice": 0.6496815286624203,
+        "prediction_voxels": 121,
+        "human_voxels": 193,
+        "false_positive_voxels": 19,
+        "false_negative_voxels": 91
+      },
+      "breast_nipple_union": {
+        "dice": 0.8225913621262458,
+        "prediction_voxels": 6778,
+        "human_voxels": 6767,
+        "false_positive_voxels": 1207,
+        "false_negative_voxels": 1196
+      }
+    },
+    {
+      "reference_k": 13,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        6.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7807821229050279,
+        "prediction_voxels": 6490,
+        "human_voxels": 6935,
+        "false_positive_voxels": 1249,
+        "false_negative_voxels": 1694
+      },
+      "nipple": {
+        "dice": 0.0,
+        "prediction_voxels": 71,
+        "human_voxels": 0,
+        "false_positive_voxels": 71,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7871962062833432,
+        "prediction_voxels": 6561,
+        "human_voxels": 6935,
+        "false_positive_voxels": 1249,
+        "false_negative_voxels": 1623
+      }
+    },
+    {
+      "reference_k": 14,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        5.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.7709281691227529,
+        "prediction_voxels": 6352,
+        "human_voxels": 6609,
+        "false_positive_voxels": 1356,
+        "false_negative_voxels": 1613
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.7709281691227529,
+        "prediction_voxels": 6352,
+        "human_voxels": 6609,
+        "false_positive_voxels": 1356,
+        "false_negative_voxels": 1613
+      }
+    },
+    {
+      "reference_k": 15,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        4.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.6592413236481033,
+        "prediction_voxels": 6055,
+        "human_voxels": 6335,
+        "false_positive_voxels": 1971,
+        "false_negative_voxels": 2251
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.6592413236481033,
+        "prediction_voxels": 6055,
+        "human_voxels": 6335,
+        "false_positive_voxels": 1971,
+        "false_negative_voxels": 2251
+      }
+    },
+    {
+      "reference_k": 16,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        3.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.6361602982292638,
+        "prediction_voxels": 5608,
+        "human_voxels": 5122,
+        "false_positive_voxels": 2195,
+        "false_negative_voxels": 1709
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.6361602982292638,
+        "prediction_voxels": 5608,
+        "human_voxels": 5122,
+        "false_positive_voxels": 2195,
+        "false_negative_voxels": 1709
+      }
+    },
+    {
+      "reference_k": 17,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        2.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.6091859749846217,
+        "prediction_voxels": 5150,
+        "human_voxels": 4604,
+        "false_positive_voxels": 2179,
+        "false_negative_voxels": 1633
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.6091859749846217,
+        "prediction_voxels": 5150,
+        "human_voxels": 4604,
+        "false_positive_voxels": 2179,
+        "false_negative_voxels": 1633
+      }
+    },
+    {
+      "reference_k": 18,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        1.0
+      ],
+      "breast_exclusive": {
+        "dice": 0.0,
+        "prediction_voxels": 0,
+        "human_voxels": 4818,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 4818
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": 0.0,
+        "prediction_voxels": 0,
+        "human_voxels": 4818,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 4818
+      }
+    },
+    {
+      "reference_k": 19,
+      "native_source_center_ijk": [
+        95.5,
+        95.5,
+        0.0
+      ],
+      "breast_exclusive": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "nipple": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      },
+      "breast_nipple_union": {
+        "dice": null,
+        "prediction_voxels": 0,
+        "human_voxels": 0,
+        "false_positive_voxels": 0,
+        "false_negative_voxels": 0
+      }
+    }
+  ],
+  "token_usage": null,
+  "token_usage_note": "Shared agent batch; per-case tokens not separately metered. See batch token_usage.json.",
+  "visual_comparison_observations": [
+    "Human labels include native k1, which Astra left empty. At k8 and k19 the inferior attachment and posterior boundary differ; Astra extends lower, while the human superior/anterior contour is broader in places.",
+    "The nipple neighborhoods substantially overlap; their remaining difference includes extent and a small centroid offset."
+  ],
+  "visual_reference_comparison_scope": "All native slices for 0007 and 0013; selected worst-disagreement, nipple and endpoint slices for other cases. All slices compared numerically.",
+  "human_nipple_components": [
+    {
+      "id": 1,
+      "voxels": 855,
+      "centroid_ras_mm": [
+        124.90350877192982,
+        104.44757159160591,
+        8.340739737616644
+      ],
+      "native_source_k_range": [
+        7.0,
+        10.0
+      ],
+      "distance_from_astra_nipple_centroid_mm": 4.635795541082035
+    }
+  ],
+  "largest_reference_nipple_component_sensitivity": {
+    "distance_mm": 4.635795541082035,
+    "is_primary_metric": false,
+    "note": "Diagnostic sensitivity only; full unmodified reference is used for all primary scores and totals."
+  },
+  "provenance": {
+    "model": "gpt-6-astra",
+    "reasoning_effort": "medium",
+    "method": "Agent-guided source-only annotation, case-specific anchors, source-image corrections and actual Slicer review",
+    "skill_snapshot_sha256": "21639cdcf2155da11b1a44cdefbb58d34e43f332708e2ebf4561518f54fd4b54",
+    "segments_sha256": "243278926c80b01b3105bd931ac561f4e3a5348fc3fcc164f01153ea36bad673",
+    "working_segmentation_sha256": "c6e9403797ab6ec4e8f9d3dd0c7acfb3cc863785ffeb94ad8fa6a7538879cf85",
+    "user_approved": false,
+    "reference_opened_after_prediction_freeze": true
+  }
+}

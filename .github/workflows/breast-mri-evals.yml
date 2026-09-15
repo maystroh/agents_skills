@@ -1,0 +1,26 @@
+name: Breast MRI evaluation history
+on:
+  pull_request:
+    paths: ['breast-mri-annotation/**', '.github/workflows/breast-mri-evals.yml']
+  push:
+    paths: ['breast-mri-annotation/**', '.github/workflows/breast-mri-evals.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r breast-mri-annotation/evals/requirements.txt
+      - name: Test metrics
+        working-directory: breast-mri-annotation/evals
+        run: python -m unittest test_metrics test_batch_metrics test_history test_run_eval -v
+      - name: Verify version entry and README table
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python breast-mri-annotation/evals/history.py check --base "$BASE_SHA"

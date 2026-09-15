@@ -1,11 +1,7 @@
 # Agent Skills
 
-Reusable skills from my everyday AI-assisted workflows.
+Reusable skills from everyday AI-assisted workflows, with versioned evaluation evidence.
 
-## Available skills
-
-| Skill | What it helps with |
+| Project | Contents |
 | --- | --- |
-| [Breast MRI annotation](breast-mri-annotation/README.md) | Create breast and nipple masks, review them in 3D Slicer, and incorporate manual corrections. |
-
-Open a skill's README for installation steps, requirements, usage examples and expected outputs.
+| [Breast MRI annotation](breast-mri-annotation/README.md) | [Skill](breast-mri-annotation/skill/README.md), [evaluation code](breast-mri-annotation/evals/README.md), and human-annotated QIN-10 metrics history. |

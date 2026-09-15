@@ -2,11 +2,14 @@
 
 Use the installed `slicer` skill to find the server implementation and APIs. The known session used an MCP handler at `http://127.0.0.1:2026/mcp`, started inside Slicer. Discover/verify endpoint and process; do not assume this port, node IDs, version or session still exist.
 
-Discover a supported local Slicer connection or inspect a project-provided bootstrap before reuse. Keep Python execution endpoints loopback-only and follow the server's connection-consent requirements. A timeout may mean a consent dialog is pending; inspect state before retrying. Do not blindly replay a mutation after a timeout.
+The local bootstrap from the worked example is `<LOCAL_WORKSPACE>\connect_slicer.py`; inspect before reuse. It uses the installed skill's MCP handler with a loopback-only WebServer. The upstream server requires first-connection consent. Keep access local; do not expose an unauthenticated Python execution endpoint to the network. Follow tool policy for permission dialogs. A request timing out can mean the consent dialog is pending; inspect before retrying. Do not blindly replay a mutation after timeout—read state first.
 
 For a running user session, preserve loaded data and unsaved edits. For folder batches, a separate review instance is preferable. Starting a separate instance does not connect to or recover unsaved content in the existing one. Do not clear an existing scene to load the next case. Remove only temporary nodes created by this workflow after saving and checking dependencies.
 
-If the project provides an editor setup script, read it before use and apply it after selecting the intended source and draft. Verify its target editor, segment names/order, geometry and shortcuts. Overall segmentation visibility needs a separate check; do not assume the script's fallback selects the intended draft.
+The user's setup script:
+`<PROJECT_SETUP_SCRIPT>`
+
+It discovers the visible editor, sets segment names/colors/order and source geometry, and binds `1` breast, `2` nipple, `3` fill/outline, `p` paint, `e` erase, `[`/`]` brush size, `r` reapply. Read it when needed; do not execute unexamined scripts or assume its visible-editor fallback selects the desired draft. Overall segmentation visibility needs a separate check.
 
 ## Geometry and export
 

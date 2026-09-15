@@ -1,0 +1,11 @@
+**/__pycache__/
+**/.deps/
+**/.venv/
+**/runs/
+**/batches/
+**/data/
+*.nii
+*.nii.gz
+*.nrrd
+*.npz
+*.npy

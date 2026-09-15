@@ -1,0 +1,57 @@
+[
+  {
+    "id": "2026-09-15-local-v1",
+    "date": "2026-09-15",
+    "change": "Original local-reference baseline; human-user-10 cohort",
+    "status": "evaluated historical",
+    "result": "evals/results/2026-09-15-local-v1/README.md",
+    "summary": {
+      "case_count": 10,
+      "breast_dice": 0.8214431549069156,
+      "union_dice": 0.8248628461112382,
+      "nipple_dice": 0.40624737968776864,
+      "nipple_distance_mm": 11.690864792298523
+    },
+    "evaluated_skill_files_sha256": {
+      "SKILL.md": "21639cdcf2155da11b1a44cdefbb58d34e43f332708e2ebf4561518f54fd4b54",
+      "references\\annotation-rules.md": "8b5434647bc684ff1cf76b41c339d6255ec93d0dd6304bae8e11b110b6b2558d",
+      "references\\mama-mia-review1-learned-preferences.md": "701b379333834cae218931efead58f10964bf5b3e53d8691e9fd5fafde1cf2e1",
+      "references\\review1-learned-preferences.md": "317b217d4aa1d8336d144154fca8a7ce74448835a33321ab8a682ef6dc9274a3",
+      "references\\slicer-workflow.md": "6598c3030fbde0ce911c7978d2a93391ec4bdcc5d02805811173f3d934589ac4",
+      "scripts\\batch_io.py": "11c47b6fe48a8087b16c25aabfe6a2abc0145e0f1da7449d1a7802bc56c05812"
+    },
+    "evaluated_code_sha256": {
+      "annotate_case0003.py": "c868414b3ea84eb1cd63776c62f1e8db5e595caa3ab608a9670825cb38f1f702",
+      "batch_freeze.py": "9ab372070d8e197ec2540330c326fbc929c73493f7cf3c6513d81c7e6ea0ea64",
+      "batch_generate.py": "6ac7b72630dd12c243e96c568fbf5a1a375da1163fa6f324f87c0018cb917625",
+      "batch_metrics.py": "dc531d2a020f60822106bce174e0530361e4e6ffeb44d540b951851f46205dd7",
+      "batch_prepare.py": "bf5d0d558c891e965fec8f91563373db953611c346c97c1ec3e23e28bda33e18",
+      "batch_refine.py": "ec8901e10eabb409c4a811b521244998167daf767cae442a88b448db1f8ddb66",
+      "batch_refine_final.py": "8aafd279be1630bb37350adbcca0f96b0a7a423cdfe3ef43f043af84cf17f3ee",
+      "batch_slicer_review.py": "e9cb58e1586c6986263486b1033b96bb45902b181ba02d1a4e0d9152365e89f1",
+      "evaluate.py": "2474185823317cdb19fffd55d55cf65a1c8f9567f64df319877b1281228c75c0",
+      "fix_end_0013.py": "f547d1a144081d15b68c0df0110a5d7fa394f1af935c6256d816fc029560dadd",
+      "inspect_source.py": "ced1984f7e686d636503348d12282f8e6a71be3166e0b82beb46f104eeef3ea5",
+      "prepare.py": "2f202cb1d1b295a2806a4eeb7d5ace649642d7e795b03e15fae5a37648b1e702",
+      "publish_batch.py": "a06f7ed98ba6729880911a5ec268a86ece89e4f2dba82d8d8ceb17afb73b9ec2",
+      "report_run.py": "29e4324402abd8143475a10ddfbd21a82ce475bf3d6fa00ba2dd50dd8f46adec",
+      "review_sheets.py": "2d9bcbc968d14711bbc0bc2c9a7cfb1954eafe85cbb5d0612a6086fb28517278",
+      "score_run.py": "9a057413f70bfca6c51fe1d536579d8c94dc9a18e6028984479581d82af0739b",
+      "slicer_review.py": "58270a89fa5775aed331019f2357e28344083797d75ec236ced066f04cb70b03",
+      "slicer_review_0013.py": "7ea8480b0c7d0752bee719eab56f35bcdbe4cf46ccefde4764c6fc675fdf294d",
+      "test_batch_metrics.py": "8d64158c10ae96bf4c78aa328a0b34a6c39d485153741894ed5260bd7c5e0997",
+      "test_metrics.py": "7ee15028c46f72bf33b84a413e1ea752cb662c06b847dfb7a1636d899d55e9be",
+      "token_usage.py": "e155001b887cba8fc90f0371afac6dedcc620eff2dbb080fb658c14b99ef73aa",
+      "validate_batch.py": "9c4251fa47a1565ad309f8412f041f3130b551f705cba01df99cff0982a2605a",
+      "verify_reference_channels.py": "0f6521d3b4e479d1611d202d33066de4d17bd096b76d5d0ac11407f760022cb2"
+    }
+  },
+  {
+    "id": "2026-09-15-packaging",
+    "date": "2026-09-15T14:51:52.225452+00:00",
+    "change": "Split skill/evals, preserve QIN human-ten baseline, add portable scorer and version-history checks; fresh annotation pending",
+    "status": "pending evaluation",
+    "skill_sha256": "da32050f0d890d6f9495bea034a50807e53d5640ded4f04245a7a236175d513e",
+    "evals_sha256": "de5c0ab2f799cd49bc23eb506537123d34973124756f60fd166bb7a7f6cb2a7f"
+  }
+]
