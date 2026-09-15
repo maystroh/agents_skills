@@ -33,6 +33,6 @@ class HistoryTests(unittest.TestCase):
 
     def test_pending_has_no_invented_scores(self):
         text=history.render([{'id':'v2','change':'unmeasured','status':'pending evaluation'}])
-        self.assertIn('pending evaluation',text);self.assertNotIn('0.0000',text)
+        self.assertNotIn('pending evaluation',text);self.assertNotIn('v2',text);self.assertNotIn('0.0000',text)
 
 if __name__=='__main__':unittest.main()

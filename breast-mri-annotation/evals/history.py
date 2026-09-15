@@ -35,6 +35,7 @@ def render(records):
     lines=['| Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ |',
            '| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |']
     for r in records:
+        if not r.get('summary'):continue
         s=r.get('summary');vals=[str(s['case_count']),*[f'{s[k]:.4f}' for k in ['breast_dice','union_dice','nipple_dice']],f"{s['nipple_distance_mm']:.2f}"] if s else ['—']*5
         title=r['id'];title=f"[{title}]({r['result']})" if r.get('result') else title
         lines.append('| '+' | '.join([title,r['change'].replace('|','/').replace('\n',' '),r['status'],*vals])+' |')

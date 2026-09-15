@@ -61,5 +61,13 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "0ca64e7673a48d5085b85f9ded9795e01290ce3ba651787095b4cec00a908ff8"
+  },
+  {
+    "id": "2026-09-15-measured-table",
+    "date": "2026-09-15T15:15:52.519880+00:00",
+    "change": "Show only measured evaluations in the README table; retain infrastructure records in JSON history",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "5b433a3504a85be00bc54aed0a32e3bad92630724b3b904c64656e2c863171c1"
   }
 ]

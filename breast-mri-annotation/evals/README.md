@@ -36,7 +36,7 @@ python history.py add --id 2026-09-16-v2 --change "Describe the tested change" -
 python history.py check
 ```
 
-For a code/text change without fresh annotation, use `python history.py add --id 2026-09-16-pending --change "Describe the untested change"`. This records **pending evaluation** with no scores. `history.py render` regenerates the README table from history. Do not edit or replace earlier entries. GitHub Actions enforces a matching current fingerprint and synchronized table; it runs mathematical tests, not costly agent annotation. No scheduled watcher is installed.
+For a code/text change without fresh annotation, use `python history.py add --id 2026-09-16-pending --change "Describe the untested change"`. This records **pending evaluation** with no scores in `history.json`; unmeasured entries are omitted from the README metrics table. `history.py render` regenerates the table from measured history entries. Do not edit or replace earlier entries. GitHub Actions enforces a matching current fingerprint and synchronized table; it runs mathematical tests, not costly agent annotation. No scheduled watcher is installed.
 
 ## Measurements and comparability
 

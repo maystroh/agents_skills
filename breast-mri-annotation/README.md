@@ -35,15 +35,13 @@ breast-mri-annotation/
 
 ## Evaluation history
 
-Scores are unweighted means over the ten human cases. Breast Dice excludes nipple in both label encodings; union Dice includes both. Higher Dice and lower centroid distance are better. **Pending** means no new measured score is available; it never inherits the previous result.
+Scores are unweighted means over the ten human cases. Breast Dice excludes nipple in both label encodings; union Dice includes both. Higher Dice and lower centroid distance are better. This table shows measured evaluations only. Infrastructure changes and pending evaluations remain in [the change history](evals/history.json).
 
 <!-- evaluation-history:start -->
 
 | Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 |
-| 2026-09-15-packaging | Split skill/evals, preserve QIN human-ten baseline, add portable scorer and version-history checks; fresh annotation pending | pending evaluation | — | — | — | — | — |
-| 2026-09-15-portable-fingerprints | Normalize relative-path ordering across Windows/Linux; version-check regression test; annotation results unchanged | pending evaluation | — | — | — | — | — |
 
 <!-- evaluation-history:end -->
 
