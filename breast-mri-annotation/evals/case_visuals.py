@@ -30,7 +30,7 @@ def render_comparison(source, pred_union, human_union, pred_nipple, human_nipple
     masks = [np.asarray(m, dtype=bool) for m in (pred_union, human_union, pred_nipple, human_nipple)]
     indices = select_slices(*masks)
     colors = ['lime', 'cyan', '#ff4040', 'orange']
-    labels = ['Astra breast + nipple', 'Human breast + nipple', 'Astra nipple', 'Human nipple']
+    labels = ['Astra breast', 'Human breast', 'Astra nipple', 'Human nipple']
     fig, axes = plt.subplots(1, len(indices), figsize=(5*len(indices), 5.6), squeeze=False, facecolor='#111820')
     vmin, vmax = np.percentile(source, [1, 99.8])
     for ax, k in zip(axes.flat, indices):
