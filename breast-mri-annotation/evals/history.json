@@ -196,5 +196,21 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "35e5be2ded534c0a4b338c36364a4f241febe4892905aa13c413863b548a2228"
+  },
+  {
+    "id": "2026-10-03-readme-model-text-removal",
+    "date": "2026-10-03T12:57:17.752155+00:00",
+    "change": "Remove the requested model-column explanation from the project README",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "7e31d526bdf502760ea6e602334b3d8dfafc77ff41ed60526461f1218048ec3d"
+  },
+  {
+    "id": "2026-10-03-remove-readme-token-column",
+    "date": "2026-10-03T12:58:27.354040+00:00",
+    "change": "Remove the Nb tokens column from the generated evaluation table",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "202b52ca5dab64edf03550f2effbd75eeafe113a28559b5cbc613aaabcb395be"
   }
 ]

@@ -39,14 +39,12 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 
 <!-- evaluation-history:start -->
 
-| Date / run | Model | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ | Nb tokens |
-| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | gpt-6-astra | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 | ~7.4M |
-| [2026-10-03-sol6.1-local-v1](evals/results/2026-10-03-sol6.1-local-v1/README.md) | gpt-6.1-sol (sol6.1) | Fresh source-only sol6.1 annotation; same original local references; human-user-10 cohort | evaluated local | 10 | 0.8214 | 0.8237 | 0.3436 | 12.59 | — |
+| Date / run | Model | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: |
+| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | gpt-6-astra | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 |
+| [2026-10-03-sol6.1-local-v1](evals/results/2026-10-03-sol6.1-local-v1/README.md) | gpt-6.1-sol (sol6.1) | Fresh source-only sol6.1 annotation; same original local references; human-user-10 cohort | evaluated local | 10 | 0.8214 | 0.8237 | 0.3436 | 12.59 |
 
 <!-- evaluation-history:end -->
-
-**Model** identifies the agent used for each measured run.
 
 ### Reading the baseline
 

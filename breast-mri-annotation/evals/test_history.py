@@ -42,13 +42,14 @@ class HistoryTests(unittest.TestCase):
             record={'id':'legacy','change':'baseline','status':'evaluated historical','result':'evals/results/legacy/README.md','summary':{'case_count':10,'breast_dice':.82,'union_dice':.83,'nipple_dice':.4,'nipple_distance_mm':12}}
             original=json.loads(json.dumps(record))
             with patch.object(history,'ROOT',root):text=history.render([record])
-            self.assertIn('| Model |',text);self.assertIn('| gpt-6-astra |',text);self.assertIn('~7.4M',text)
+            self.assertIn('| Model |',text);self.assertIn('| gpt-6-astra |',text)
+            self.assertNotIn('Nb tokens',text);self.assertNotIn('~7.4M',text)
             self.assertEqual(record,original)
 
-    def test_model_label_and_unknown_tokens(self):
+    def test_model_label(self):
         record={'id':'new','change':'local evaluation','status':'evaluated local','model':'gpt-6.1-sol','model_label':'sol6.1','summary':{'case_count':10,'breast_dice':.82,'union_dice':.83,'nipple_dice':.34,'nipple_distance_mm':12.59}}
         text=history.render([record])
         self.assertIn('| gpt-6.1-sol (sol6.1) |',text)
-        self.assertTrue(text.splitlines()[-1].endswith('| — |'))
+        self.assertTrue(text.splitlines()[-1].endswith('| 12.59 |'))
 
 if __name__=='__main__':unittest.main()
