@@ -37,6 +37,18 @@
     "Reference files match the historical baseline. This is not a new evaluation against online split-label packaging.",
     "Reasoning effort and token totals were not available from recorded evaluation metadata.",
     "Annotation used the installed local skill; publishing this result does not attest evaluation of the current packaged instructions.",
-    "Only aggregate statistical metrics and methodology are published for this run. Medical comparison images and case-level detailed artifacts remain local."
-  ]
+    "Aggregate metrics and the explicitly requested selected three-slice comparison images are public. Detailed coordinate/voxel-level metrics, raw MRI volumes and mask exports remain local."
+  ],
+  "case_artifacts": {
+    "format": "Selected three-slice MRI comparison pages",
+    "case_count": 10,
+    "page_pattern": "QIN-BREAST-01-<case>/README.md",
+    "legend": {
+      "sol6.1_breast": "green",
+      "human_breast": "cyan",
+      "sol6.1_nipple": "red",
+      "human_nipple": "orange"
+    },
+    "predictions_and_scores_changed": false
+  }
 }

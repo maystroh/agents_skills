@@ -180,5 +180,13 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "d2eede006b7b1624a267df8dc748c93ae43f166dd2a4cdd6cd7ce2092d79a3d0"
+  },
+  {
+    "id": "2026-10-03-sol6.1-case-artifacts",
+    "date": "2026-10-03T13:34:58.297566+02:00",
+    "change": "Publish explicitly requested three-slice sol6.1/human comparison artifacts for the ten benchmark cases; frozen masks and measured scores unchanged; packaged-instruction evaluation remains pending",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "d2eede006b7b1624a267df8dc748c93ae43f166dd2a4cdd6cd7ce2092d79a3d0"
   }
 ]
