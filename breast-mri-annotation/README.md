@@ -46,14 +46,13 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 
 <!-- evaluation-history:end -->
 
-**Model** identifies the agent used for each measured run. **Nb tokens** is the recorded input + output count at the run's saved checkpoint. The historical baseline used approximately 7.4M tokens; **—** means token usage was unavailable for that run, including sol6.1.
+**Model** identifies the agent used for each measured run.
 
 ### Reading the baseline
 
 - The main cohort includes the previously evaluated pilot 0003; it was already visible before the continuation. The set is not certified independent of all skill development history.
 - Case 0013 contains a disconnected 316-voxel human nipple component. Primary scores retain it: centroid distance is 24.87 mm. Largest-component-only sensitivity is 4.86 mm, reported separately rather than replacing ground truth.
 - Pilot 0003 has 9,733 human-labelled voxels beyond the local source coverage. Full-reference scores penalize these; common-coverage scores are also available.
-- The continuation consumed **7,362,686 recorded tokens**: 6,956,416 cached input, 361,073 uncached input and 45,197 output. This covers its annotation, corrections, review and reporting, includes development case 0031, and excludes the prior pilot work and calls after the saved checkpoint. It is not an exact cost for the human-ten cohort. Per-case token attribution and dollar cost are unavailable.
 - This is evidence of agreement with one annotation convention on a small dataset. A baseline alone does not establish clinical validity, market superiority, or the causal benefit of a particular instruction change. Comparable repeated runs are needed to measure improvements and variability.
 
 ## Keeping changes measurable
