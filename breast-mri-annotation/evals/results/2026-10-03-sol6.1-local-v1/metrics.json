@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-10-03-sol6.1-local-v1",
+  "date": "2026-10-03",
+  "status": "evaluated_local",
+  "model": "gpt-6.1-sol",
+  "model_label": "sol6.1",
+  "reasoning_effort": null,
+  "cohort": "human-user-10",
+  "case_count": 10,
+  "excluded_development_case": "0031",
+  "included_pilot_case": "0003",
+  "reference_version": "Same original local references as the published historical baseline, prior to online split-label packaging",
+  "summary": {
+    "breast_dice": 0.8213920393288628,
+    "union_dice": 0.8237250541226778,
+    "nipple_dice": 0.3436176477864959,
+    "nipple_distance_mm": 12.590412313004764
+  },
+  "token_usage": {
+    "available": false,
+    "delta": {
+      "total_tokens": null
+    },
+    "note": "Recorded total unavailable; no estimate used."
+  },
+  "protocol": {
+    "annotation_method": "Fresh source-only agent-guided annotation, case-specific anatomical contours and independently localized nipple neighborhoods",
+    "review": "200 benchmark sagittal slices visually reviewed in 3D Slicer before scoring",
+    "predictions_frozen_before_human_reference_access": true,
+    "predictions_adjusted_after_scoring": false,
+    "original_source_and_reference_pairs_verified_against_baseline": 10,
+    "export_geometry_and_labels_verified": true
+  },
+  "notes": [
+    "Means are unweighted across the ten benchmark cases. Breast Dice excludes nipple consistently; union includes both.",
+    "Full original reference labels retained. Case 0031 is excluded and 0003 remains included.",
+    "Reference files match the historical baseline. This is not a new evaluation against online split-label packaging.",
+    "Reasoning effort and token totals were not available from recorded evaluation metadata.",
+    "Annotation used the installed local skill; publishing this result does not attest evaluation of the current packaged instructions.",
+    "Only aggregate statistical metrics and methodology are published for this run. Medical comparison images and case-level detailed artifacts remain local."
+  ]
+}

@@ -35,4 +35,20 @@ class HistoryTests(unittest.TestCase):
         text=history.render([{'id':'v2','change':'unmeasured','status':'pending evaluation'}])
         self.assertNotIn('pending evaluation',text);self.assertNotIn('v2',text);self.assertNotIn('0.0000',text)
 
+    def test_model_column_reads_immutable_legacy_result(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);result=root/'evals/results/legacy';result.mkdir(parents=True)
+            (result/'metrics.json').write_text(json.dumps({'model':'gpt-6-astra','token_usage':{'delta':{'total_tokens':7362686}}}))
+            record={'id':'legacy','change':'baseline','status':'evaluated historical','result':'evals/results/legacy/README.md','summary':{'case_count':10,'breast_dice':.82,'union_dice':.83,'nipple_dice':.4,'nipple_distance_mm':12}}
+            original=json.loads(json.dumps(record))
+            with patch.object(history,'ROOT',root):text=history.render([record])
+            self.assertIn('| Model |',text);self.assertIn('| gpt-6-astra |',text);self.assertIn('~7.4M',text)
+            self.assertEqual(record,original)
+
+    def test_model_label_and_unknown_tokens(self):
+        record={'id':'new','change':'local evaluation','status':'evaluated local','model':'gpt-6.1-sol','model_label':'sol6.1','summary':{'case_count':10,'breast_dice':.82,'union_dice':.83,'nipple_dice':.34,'nipple_distance_mm':12.59}}
+        text=history.render([record])
+        self.assertIn('| gpt-6.1-sol (sol6.1) |',text)
+        self.assertTrue(text.splitlines()[-1].endswith('| — |'))
+
 if __name__=='__main__':unittest.main()

@@ -117,5 +117,68 @@
     "status": "pending evaluation",
     "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
     "evals_sha256": "03bfa5589e6a59d47b02e3ad327c701e5fb46c17afe5baa6657b190004603f6b"
+  },
+  {
+    "id": "2026-10-03-sol6.1-local-v1",
+    "date": "2026-10-03",
+    "model": "gpt-6.1-sol",
+    "model_label": "sol6.1",
+    "change": "Fresh source-only sol6.1 annotation; same original local references; human-user-10 cohort",
+    "status": "evaluated local",
+    "result": "evals/results/2026-10-03-sol6.1-local-v1/README.md",
+    "summary": {
+      "case_count": 10,
+      "breast_dice": 0.8213920393288628,
+      "union_dice": 0.8237250541226778,
+      "nipple_dice": 0.3436176477864959,
+      "nipple_distance_mm": 12.590412313004764
+    },
+    "evaluated_skill_files_sha256": {
+      "SKILL.md": "21639cdcf2155da11b1a44cdefbb58d34e43f332708e2ebf4561518f54fd4b54",
+      "references\\annotation-rules.md": "8b5434647bc684ff1cf76b41c339d6255ec93d0dd6304bae8e11b110b6b2558d",
+      "references\\mama-mia-review1-learned-preferences.md": "701b379333834cae218931efead58f10964bf5b3e53d8691e9fd5fafde1cf2e1",
+      "references\\review1-learned-preferences.md": "317b217d4aa1d8336d144154fca8a7ce74448835a33321ab8a682ef6dc9274a3",
+      "references\\slicer-workflow.md": "6598c3030fbde0ce911c7978d2a93391ec4bdcc5d02805811173f3d934589ac4",
+      "scripts\\batch_io.py": "11c47b6fe48a8087b16c25aabfe6a2abc0145e0f1da7449d1a7802bc56c05812"
+    },
+    "evaluated_code_files_sha256": {
+      "batch_metrics.py": "c1e94d19eb714e2fd5321500535f03b05de9b6e6a4258454523a6236a316f9bf",
+      "browser_cli.ps1": "03d0ac1378c02bbc8088aebb9a8778ec6678556e1ebf5b7c2f8ab14c0061ef88",
+      "case_visuals.py": "5fed226b8e4177a122396b0f2723f0fe468465974cc044cf791795d54b717ae0",
+      "decisions.json": "c3e7928e8aad6810957301c31c4e89a42356b6f9516f4145123a5816c703579e",
+      "evaluate.py": "2474185823317cdb19fffd55d55cf65a1c8f9567f64df319877b1281228c75c0",
+      "final_correction.py": "24f0af3d4fd9076e221b2b60ce5037c8a45c2e91d9714c4de511c82da75b5160",
+      "fix_source.py": "b63eac249c826c7c714f889bbc3caecc11fe11db3d521bb414c6b202b7e15e55",
+      "fix_two.py": "e60b6a9291ae7a72068c42aa79fa226cc0b7065eacf1f091d012d265fe961aba",
+      "freeze.py": "8557804df4287d6ae4f711ea1f1af5556a61c661baada5ae9b86247075e92221",
+      "generate.py": "bfb9ef9bae5342ca94aef0fa2811f9e0ba7347196906a99316a8b1cb85ce3d2d",
+      "github_baseline_metrics.json": "89ec50b623d48fb41ba29f605cc44df9c89b5eed03c6c1fb300c7b48ae60493c",
+      "github_README_snapshot.md": "5454fef88e820e2376a0d413161f55aac98f3915039bb74470ac884d9c1a7306",
+      "prepare.py": "b763b84f4bc39b40b30a0c45aa629c2e6d2c6d1f5a68c3362bbed461d6ff9b8d",
+      "README.md": "6344b567183c4d171d6d4a05c72374d57814fb908d9784b0a99112d1054a8971",
+      "recompute_benchmark.py": "d21d0f3352e30a964603b5ebdf65ab5f7f9d5ae144cff46dde41a056c3d42c76",
+      "reference_inventory.py": "6a8192a24f61394ff3aee1f68a215b4db50038827a5d8aa53f7e893765034477",
+      "refine.py": "3dbd9c8982048b1b83e0fb72299b8458b29eac38209429085d46d0a152923a33",
+      "score_and_report.py": "f8986cb4f2b0e268d4558f716c94322b7a673a193d7adcd50cacfc8a19a64812",
+      "serve_viewer.py": "83df53925c8d84ad4ab23f67ce83f411dd4f953698474eaf57d1a2a421277f23",
+      "slicer_capture.py": "d87d67c730dd1fdf733ef910d991eb01b40b423e18b590ac5ae607844292ee7d",
+      "slicer_show.py": "19e330957390e01a12b1f37fc3829c92aa6c3562fd76c25f772a5f3d89cb2bc5",
+      "source_closeups.py": "981c4790a0e31163dacb2ae852727623039e8c5d18738b51813456d602954c69",
+      "test_batch_metrics.py": "8d64158c10ae96bf4c78aa328a0b34a6c39d485153741894ed5260bd7c5e0997",
+      "test_metrics.py": "7ee15028c46f72bf33b84a413e1ea752cb662c06b847dfb7a1636d899d55e9be",
+      "verify_outputs.py": "36d8adb58948904f75a98d01351801c95492be2d079e22590a74b6fe4bb95361",
+      "viewer_template.html": "9433a34411a4c3667ecb8009bbbf0c5ba339a7fb35cd89ef595d5aa36e5c40bb"
+    },
+    "reference_hashes_match_historical_baseline": true,
+    "token_usage_available": false,
+    "notes": "Measured installed-local-skill run; aggregate text-only publication. Detailed medical artifacts remain local. Current packaged instructions are not newly evaluated."
+  },
+  {
+    "id": "2026-10-03-model-column-publication",
+    "date": "2026-10-03T13:24:12.686238+02:00",
+    "change": "Add model names to generated results table and publish the measured sol6.1 local run; packaged-instruction evaluation remains pending",
+    "status": "pending evaluation",
+    "skill_sha256": "ff59bd48aa74ec977ded4fc717fa2fff89f5347370cb87e1d5b988a271f566e2",
+    "evals_sha256": "d2eede006b7b1624a267df8dc748c93ae43f166dd2a4cdd6cd7ce2092d79a3d0"
   }
 ]

@@ -31,7 +31,7 @@ breast-mri-annotation/
     └── archive/              # historical annotation helpers and decisions
 ```
 
-[Install and use the skill](skill/README.md) · [Run evaluations](evals/README.md) · [Baseline metrics and per-case reports](evals/results/2026-09-15-local-v1/README.md)
+[Install and use the skill](skill/README.md) · [Run evaluations](evals/README.md) · [Baseline metrics and per-case reports](evals/results/2026-09-15-local-v1/README.md) · [sol6.1 results and model details](evals/results/2026-10-03-sol6.1-local-v1/README.md)
 
 ## Evaluation history
 
@@ -39,13 +39,14 @@ Scores are unweighted means over the ten human cases. Breast Dice excludes nippl
 
 <!-- evaluation-history:start -->
 
-| Date / run | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ | Nb tokens |
-| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 | ~7.4M |
+| Date / run | Model | Change | Status | n | Breast Dice ↑ | Union Dice ↑ | Nipple Dice ↑ | Nipple distance mm ↓ | Nb tokens |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| [2026-09-15-local-v1](evals/results/2026-09-15-local-v1/README.md) | gpt-6-astra | Original local-reference baseline; human-user-10 cohort | evaluated historical | 10 | 0.8214 | 0.8249 | 0.4062 | 11.69 | ~7.4M |
+| [2026-10-03-sol6.1-local-v1](evals/results/2026-10-03-sol6.1-local-v1/README.md) | gpt-6.1-sol (sol6.1) | Fresh source-only sol6.1 annotation; same original local references; human-user-10 cohort | evaluated local | 10 | 0.8214 | 0.8237 | 0.3436 | 12.59 | — |
 
 <!-- evaluation-history:end -->
 
-**Nb tokens** is the recorded input + output count at the run's saved checkpoint. ~7.4M tokens were used to accomplish this task.
+**Model** identifies the agent used for each measured run. **Nb tokens** is the recorded input + output count at the run's saved checkpoint. The historical baseline used approximately 7.4M tokens; **—** means token usage was unavailable for that run, including sol6.1.
 
 ### Reading the baseline
 
