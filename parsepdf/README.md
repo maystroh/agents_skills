@@ -23,21 +23,15 @@ $skill-installer install the parsepdf skill from https://github.com/maystroh/age
 
 For Claude Code, copy this folder to `~/.claude/skills/parsepdf/`. For other agents, point them at `SKILL.md`.
 
-**2. Install the dependency:**
+**2. Ask the agent to set it up.** In a new chat, say:
 
-```bash
-pip install "llama-cloud>=1.4"
+```text
+Set up $parsepdf
 ```
 
-**3. Add your keys.** Copy them from an existing `.env`:
+It installs its dependency, then asks for the path of the `.env` that holds your keys. Paste the path and it imports the keys and tests them. If you don't have a `.env`, it gives you one command to copy into your terminal, where you paste your keys with hidden input. The keys never go through the chat.
 
-```bash
-python ~/.codex/skills/parsepdf/scripts/parsepdf.py --add-key --from path/to/.env
-```
-
-Or type them in: run `--add-key` without `--from`, paste each key (input is hidden) and press Enter on an empty line to finish. Each key is tested, and every key should show `ok`. Later, run `--add-key` again to add a new key. It is saved as the next number.
-
-On Windows, write the path as `$HOME\.codex\skills\parsepdf\scripts\parsepdf.py`. For Claude Code, use `.claude` instead of `.codex`.
+**3. Use it:** `Use $parsepdf on C:\papers\paper.pdf`. Add "in agentic mode" for the higher tier. To add a new key later, say "add a LlamaCloud key to parsepdf".
 
 ### Managing keys
 

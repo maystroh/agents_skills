@@ -462,6 +462,7 @@ def setup(target: Path, source: str | None, remove: list[str]) -> int:
         pass
     STATE_FILE.unlink(missing_ok=True)  # new keys start with a clean health record
 
+    ensure_dependency()
     keys = sorted((Key(n, key_number(n), v) for n, v in read_env_file(target).items()), key=lambda key: key.index)
     shadowed = [k for k in keys if os.getenv(k.name)]
     print(f"Saved {len(keys)} key(s). Checking them with LlamaCloud (no credits used):")
@@ -475,13 +476,52 @@ def setup(target: Path, source: str | None, remove: list[str]) -> int:
     return code
 
 
+def ensure_dependency() -> None:
+    """Install llama-cloud into this Python the first time it is missing."""
+    try:
+        import llama_cloud  # noqa: F401
+        return
+    except ImportError:
+        pass
+    import subprocess
+
+    log("First run: installing llama-cloud (one time)...")
+    base = [sys.executable, "-m", "pip", "install", "--quiet", "--disable-pip-version-check", "llama-cloud>=1.4"]
+    for command in (base, base + ["--user"]):
+        if subprocess.run(command, stdout=sys.stderr).returncode == 0:
+            import importlib
+            import site
+
+            importlib.invalidate_caches()
+            if site.getusersitepackages() not in sys.path:
+                sys.path.append(site.getusersitepackages())
+            try:
+                import llama_cloud  # noqa: F401
+                return
+            except ImportError:
+                break
+    raise SystemExit(f'Could not install llama-cloud. Run: "{sys.executable}" -m pip install "llama-cloud>=1.4"')
+
+
+def setup_commands() -> str:
+    """Copy-paste commands for adding keys, with this machine's real paths."""
+    script = Path(__file__).resolve()
+    if os.name == "nt":  # PowerShell
+        base = f'& "{sys.executable}" "{script}"'
+    else:
+        base = f"{shlex.quote(sys.executable)} {shlex.quote(str(script))}"
+    return (f"  Type or paste keys (hidden):  {base} --add-key\n"
+            f"  Copy from an existing .env:   {base} --add-key --from <path to .env>")
+
+
 def check(keys: list[Key], env_file: Path | None) -> int:
     state = KeyState()
     now = datetime.now(timezone.utc)
     print(f".env file: {env_file or 'none found'}")
     print(f"key state: {state.path}")
     if not keys:
-        print("No LlamaCloud keys found.")
+        print("No LlamaCloud keys found. To add them, run one of:")
+        print(setup_commands())
         return 1
     for key in keys:
         reason = state.unavailable_reason(key, now)
@@ -523,6 +563,7 @@ def main() -> None:
     if args.check or args.verify:
         code = check(keys, env_file)
         if args.verify and keys:
+            ensure_dependency()
             print("Verifying with LlamaCloud (no credits used):")
             code = asyncio.run(verify_keys(keys))
         sys.exit(code)
@@ -531,12 +572,8 @@ def main() -> None:
             sys.exit(0)
         parser.error("give at least one PDF, folder or URL")
     if not keys:
-        raise SystemExit("No LlamaCloud keys found. Run `parsepdf.py --add-key` in a terminal to enter them, "
-                         "or `--add-key --from PATH/.env` to copy them from an existing .env.")
-    try:
-        import llama_cloud  # noqa: F401
-    except ImportError:
-        raise SystemExit("Missing dependency: pip install 'llama-cloud>=1.4'  (or run with: uv run parsepdf.py ...)")
+        raise SystemExit("No LlamaCloud keys found. To add them, run one of:\n" + setup_commands())
+    ensure_dependency()
     sys.exit(asyncio.run(run(args, keys)))
 
 

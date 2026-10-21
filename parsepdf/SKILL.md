@@ -14,7 +14,7 @@ python scripts/parsepdf.py <pdf | folder | https-url> [...]          # cost_effe
 python scripts/parsepdf.py <inputs> --agentic                         # only when the user asks
 ```
 
-`scripts/` is relative to this skill's folder. With `uv` installed, `uv run scripts/parsepdf.py ...` installs the dependencies by itself. Otherwise install them once with `pip install -r requirements.txt`.
+`scripts/` is relative to this skill's folder. Use the skill folder's absolute path when you run the script. The script installs its only dependency (`llama-cloud`) into the current Python on first use, so do not ask the user to install anything.
 
 Each PDF becomes `parsed_pdfs/<name>.md` (change the folder with `--out DIR`), with `<!-- page N -->` markers between pages. stdout lists the output paths. Read those files rather than printing whole papers into the conversation. `manifest.csv` in the output folder records pages, credits and the key name used.
 
@@ -34,15 +34,16 @@ Other options:
 
 Agentic output is saved as `<name>.agentic.md`, so it never overwrites the cost_effective file.
 
-## Installing or updating keys
+## First run, and adding keys
 
-Whenever the user installs this skill, or asks to add, change or update their LlamaCloud keys:
+Do this right after the skill is installed, the first time it is used, or whenever the user asks to add or update LlamaCloud keys. Do it yourself and keep the user's part to a single copy-paste.
 
-1. Run `python scripts/parsepdf.py --check` to see which key names are configured. It uses no credits.
-2. If the user already has a `.env` with keys (for example in another project), run `python scripts/parsepdf.py --add-key --from <that .env>`. This copies every `LLAMA_CLOUD_API_KEY*` entry into `~/.config/parsepdf/.env`, skips keys that are already saved and tests each key, so every project and agent on the machine picks them up. You never see the values.
-3. Otherwise, ask the user to run `python <path to this skill>/scripts/parsepdf.py --add-key` in their own terminal. Give them the full path. They paste as many keys as they like with hidden input, and each one is saved as the next number (`LLAMA_CLOUD_API_KEY5`, `LLAMA_CLOUD_API_KEY6` and so on) and tested. Do not run `--add-key` without `--from` yourself, because it needs a person at the keyboard. Never ask for keys in the chat.
-4. To drop a dead key, run `--remove-key <number>`, for example `--remove-key 3`.
-5. Run `--verify` to confirm that every key reports `ok`.
+1. Run `python <skill folder>/scripts/parsepdf.py --check`. It uses no credits. If it lists keys and the user isn't adding a new one, skip to step 4.
+2. Ask the user one question: "Which `.env` file holds your LlamaCloud keys? Paste its path, or say 'none' to type them in." Then:
+   - **If they give a path**, run `--add-key --from <path>` yourself. This copies every `LLAMA_CLOUD_API_KEY*` entry into `~/.config/parsepdf/.env`, skips keys that are already saved and tests each one. You never see the values.
+   - **If they say none, or want to add a new key**, give them the ready-to-paste command that `--check` printed under "Type or paste keys". It contains this machine's full Python and script paths. They run it in their own terminal, paste each key (input is hidden) and press Enter on an empty line to finish. Each key is saved as the next number (`LLAMA_CLOUD_API_KEY5`, `6` and so on). Do not run `--add-key` without `--from` yourself, because it waits for typing.
+3. Never ask for key values in the chat, and never read or print the `.env` file.
+4. Run `--verify` and report which key names show `ok`. To drop a dead key, run `--remove-key <number>`.
 
 ## Keys
 
@@ -54,7 +55,7 @@ Never print, log or commit key values. Report keys by name only, as `--check` do
 
 ## When something fails
 
-- "No LlamaCloud keys found": follow "Installing or updating keys" above. Do not ask the user to paste keys into the chat.
+- "No LlamaCloud keys found": follow "First run, and adding keys" above. Do not ask the user to paste keys into the chat.
 - "No usable LlamaCloud key right now": run `--check` and tell the user which keys are cooling down or disabled.
 - A URL that the agent cannot download can still be passed directly, because LlamaCloud fetches it on its own servers.
 - The exit code is 1 if any PDF failed. The other PDFs in the batch are still written.
