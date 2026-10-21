@@ -75,7 +75,7 @@ python scripts/parsepdf.py short.pdf --stdout             # print the Markdown
 
 ## Tiers
 
-Measured on a 10-page MICCAI paper (October 2026):
+Measured on a 10-page PDF scientific paper (October 2026):
 
 | Tier | Credits per page | Result |
 | --- | --- | --- |
