@@ -1,6 +1,6 @@
 ---
 name: parsepdf
-description: Convert PDF files or PDF URLs to clean Markdown (tables, LaTeX equations, headings) with LlamaParse, rotating across up to four LlamaCloud API keys. Use when an agent needs to read, extract text or tables from, or summarize a PDF and plain text extraction is not good enough. Default tier is cost_effective; use agentic only when the user asks for it.
+description: Convert PDF files or PDF URLs to clean Markdown (tables, LaTeX equations, headings) with LlamaParse, rotating across any number of LlamaCloud API keys. Use when an agent needs to read, extract text or tables from, or summarize a PDF and plain text extraction is not good enough. Default tier is cost_effective; use agentic only when the user asks for it.
 ---
 
 # parsepdf
@@ -39,13 +39,14 @@ Agentic output is saved as `<name>.agentic.md`, so it never overwrites the cost_
 Whenever the user installs this skill, or asks to add, change or update their LlamaCloud keys:
 
 1. Run `python scripts/parsepdf.py --check` to see which key names are configured. It uses no credits.
-2. If the user already has a `.env` with the keys (for example in another project), run `python scripts/parsepdf.py --setup --from <that .env>`. This copies the four `LLAMA_CLOUD_API_KEY*` entries into `~/.config/parsepdf/.env` and tests each key, so every project and agent on the machine picks them up. You never see the values.
-3. Otherwise, ask the user to run `python <path to this skill>/scripts/parsepdf.py --setup` in their own terminal. Give them the full path. It prompts for each of the four keys with hidden input (Enter keeps a key, `-` removes it), saves them and tests them. Do not run `--setup` without `--from` yourself, because it needs a person at the keyboard. Never ask for keys in the chat.
-4. Run `--verify` to confirm that every key reports `ok`.
+2. If the user already has a `.env` with keys (for example in another project), run `python scripts/parsepdf.py --add-key --from <that .env>`. This copies every `LLAMA_CLOUD_API_KEY*` entry into `~/.config/parsepdf/.env`, skips keys that are already saved and tests each key, so every project and agent on the machine picks them up. You never see the values.
+3. Otherwise, ask the user to run `python <path to this skill>/scripts/parsepdf.py --add-key` in their own terminal. Give them the full path. They paste as many keys as they like with hidden input, and each one is saved as the next number (`LLAMA_CLOUD_API_KEY5`, `LLAMA_CLOUD_API_KEY6` and so on) and tested. Do not run `--add-key` without `--from` yourself, because it needs a person at the keyboard. Never ask for keys in the chat.
+4. To drop a dead key, run `--remove-key <number>`, for example `--remove-key 3`.
+5. Run `--verify` to confirm that every key reports `ok`.
 
 ## Keys
 
-The script reads `LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, `LLAMA_CLOUD_API_KEY3` and `LLAMA_CLOUD_API_KEY4` from the environment or a `.env` file. Environment variables win. The `.env` is searched in this order: `--env-file`, `$PARSEPDF_ENV_FILE`, `./.env` and each parent folder, this skill's folder, then `~/.config/parsepdf/.env`. See `.env.example`.
+The script reads `LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, `LLAMA_CLOUD_API_KEY3` and so on, as many as are set, from the environment or a `.env` file. Environment variables win. The `.env` is searched in this order: `--env-file`, `$PARSEPDF_ENV_FILE`, `./.env` and each parent folder, this skill's folder, then `~/.config/parsepdf/.env`. See `.env.example`.
 
 When a key is invalid, out of credits or rate limited, the script moves on to the next key and remembers that key's cooldown in `~/.cache/parsepdf/key_state.json`. That file holds only key names and hashes. `--reset-state` clears it after the user fixes or tops up a key.
 

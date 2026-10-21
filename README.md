@@ -5,4 +5,4 @@ Reusable skills from everyday AI-assisted workflows, with versioned evaluation e
 | Project | Contents |
 | --- | --- |
 | [Breast MRI annotation](breast-mri-annotation/README.md) | [Skill](breast-mri-annotation/skill/README.md), [evaluation code](breast-mri-annotation/evals/README.md), and human-annotated QIN-10 metrics history. |
-| [parsepdf](parsepdf/README.md) | [Skill](parsepdf/SKILL.md) that converts PDFs to Markdown with LlamaParse, rotating up to four LlamaCloud keys. Works with any agent. |
+| [parsepdf](parsepdf/README.md) | [Skill](parsepdf/SKILL.md) that converts PDFs to Markdown with LlamaParse, rotating any number of LlamaCloud keys. Works with any agent. |

@@ -8,7 +8,7 @@ Convert PDFs to Markdown (tables, LaTeX equations, headings) with [LlamaParse](h
 
 - Parses PDF files, whole folders of PDFs, or PDF URLs into one Markdown file each, with `<!-- page N -->` markers.
 - Uses the `cost_effective` tier by default (about 3 credits per page). Pass `--agentic` (about 10 credits per page) when you want the higher-quality tier.
-- Rotates across `LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, `LLAMA_CLOUD_API_KEY3` and `LLAMA_CLOUD_API_KEY4`. When a key is invalid, out of credits or rate limited, it moves to the next one and remembers the cooldown.
+- Rotates across all your keys (`LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, `LLAMA_CLOUD_API_KEY3` and so on, with no limit). When a key is invalid, out of credits or rate limited, it moves to the next one and remembers the cooldown.
 - Skips PDFs that were already parsed, and logs pages, credits and key name to `manifest.csv`. It never prints key values.
 
 The skill is a standard `SKILL.md` plus one standalone Python script, so it works the same in Claude Code, Codex, Cursor, Gemini CLI or any agent that can run a shell command.
@@ -36,21 +36,21 @@ On Windows PowerShell: `Copy-Item -Recurse agents_skills\parsepdf $HOME\.claude\
 pip install -r requirements.txt   # llama-cloud>=1.4
 ```
 
-**3. Add or update your keys** with one command. Run it in your own terminal:
+**3. Add your keys** with one command. Run it in your own terminal:
 
 ```bash
-python ~/.claude/skills/parsepdf/scripts/parsepdf.py --setup
+python ~/.claude/skills/parsepdf/scripts/parsepdf.py --add-key
 ```
 
-It asks for `LLAMA_CLOUD_API_KEY` to `LLAMA_CLOUD_API_KEY4` with hidden input. Press Enter to keep a key or type `-` to remove one. It saves them to `~/.config/parsepdf/.env`, which every project and agent on the machine uses, and then tests each key without spending credits. Run the same command again whenever a key changes.
+Paste each key and press Enter. Input is hidden, and an empty line finishes. Each key is appended to `~/.config/parsepdf/.env` as the next number (`LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, ...), which every project and agent on the machine uses. Then each key is tested without spending credits. Whenever you get a new key, run the same command again and it becomes `LLAMA_CLOUD_API_KEY5`, `LLAMA_CLOUD_API_KEY6` and so on. Keys that are already saved are skipped, and `--remove-key 3` drops `LLAMA_CLOUD_API_KEY3`.
 
 If your keys are already in a `.env` somewhere, copy them over instead:
 
 ```bash
-python ~/.claude/skills/parsepdf/scripts/parsepdf.py --setup --from ~/MyProjects/miccai2026/.env
+python ~/.claude/skills/parsepdf/scripts/parsepdf.py --add-key --from ~/MyProjects/miccai2026/.env
 ```
 
-An agent can run the `--from` version for you, so the keys never pass through the chat. When you ask an agent to install the skill, it checks for keys and tells you which of the two commands to run. You can also keep keys in environment variables, which take precedence, or in a project `.env` (see `.env.example`).
+An agent can run the `--from` version for you, or you can pipe a key in with `echo "$KEY" | parsepdf.py --add-key`, so the keys never pass through the chat. When you ask an agent to install the skill, it checks for keys and tells you which of the two commands to run. You can also keep keys in environment variables, which take precedence, or in a project `.env` (see `.env.example`).
 
 ```bash
 python scripts/parsepdf.py --check    # which key names were found
@@ -83,7 +83,8 @@ python scripts/parsepdf.py short.pdf --stdout             # print the Markdown
 | `--json` | One JSON object per PDF on stdout. |
 | `--overwrite` | Re-parse PDFs that already have output. |
 | `--env-file PATH` | Use a specific `.env`. |
-| `--setup [--from PATH]` | Save or update keys in `~/.config/parsepdf/.env` (hidden prompts, or copied from a `.env`), then test them. |
+| `--add-key [--from PATH]` | Append new keys to `~/.config/parsepdf/.env` as the next numbers (hidden prompts, or copied from a `.env`), then test them. |
+| `--remove-key N` | Remove `LLAMA_CLOUD_API_KEY<N>`. |
 | `--check` / `--verify` | List configured keys and their saved health / test each key with LlamaCloud. |
 | `--reset-state` | Forget saved key cooldowns (stored in `~/.cache/parsepdf/key_state.json`, names and hashes only). |
 

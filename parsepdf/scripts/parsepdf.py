@@ -5,8 +5,8 @@
 # ///
 """Convert PDFs to Markdown with LlamaParse (LlamaCloud), rotating API keys.
 
-Keys come from LLAMA_CLOUD_API_KEY, LLAMA_CLOUD_API_KEY2, LLAMA_CLOUD_API_KEY3 and
-LLAMA_CLOUD_API_KEY4 (more numbers also work). Environment variables win over a
+Keys come from LLAMA_CLOUD_API_KEY, LLAMA_CLOUD_API_KEY2, LLAMA_CLOUD_API_KEY3, ...
+(as many as you have). Environment variables win over a
 .env file. The .env is searched in this order: --env-file, $PARSEPDF_ENV_FILE,
 ./.env and its parent folders, the skill folder, ~/.config/parsepdf/.env.
 When a key fails (bad key, no credits, rate limit) the next one is tried.
@@ -17,8 +17,9 @@ Examples:
     parsepdf.py papers/ --out parsed/           # every PDF under a folder
     parsepdf.py https://example.org/paper.pdf   # LlamaCloud fetches the URL
     parsepdf.py paper.pdf --stdout              # print the Markdown instead
-    parsepdf.py --setup                         # save/update keys (hidden prompts)
-    parsepdf.py --setup --from ~/proj/.env      # or copy them from an existing .env
+    parsepdf.py --add-key                       # add new keys (hidden prompts) as the next numbers
+    parsepdf.py --add-key --from ~/proj/.env    # or copy them from an existing .env
+    parsepdf.py --remove-key 3                  # drop LLAMA_CLOUD_API_KEY3
     parsepdf.py --check                         # list key names and their health
 
 Output: <out>/<name>.md per PDF (with <!-- page N --> markers) and a manifest.csv.
@@ -398,32 +399,52 @@ async def verify_keys(keys: list[Key]) -> int:
     return 0 if keys and all(r == "ok" for r in results) else 1
 
 
-def setup(target: Path, source: str | None) -> int:
-    """Write the keys to `target` from another .env (`source`) or hidden prompts."""
+def key_name(number: int) -> str:
+    return "LLAMA_CLOUD_API_KEY" if number == 1 else f"LLAMA_CLOUD_API_KEY{number}"
+
+
+def key_number(name: str) -> int:
+    return int(KEY_PATTERN.match(name).group(1) or 1)
+
+
+def setup(target: Path, source: str | None, remove: list[str]) -> int:
+    """Append new keys to `target` (from another .env, stdin or hidden prompts) as the next free numbers."""
     import getpass
 
     current = read_env_file(target) if target.is_file() else {}
-    names = [f"LLAMA_CLOUD_API_KEY{n if n > 1 else ''}" for n in range(1, 5)]
+    incoming: list[str] = []
+    for name in remove:
+        name = name if name.startswith("LLAMA_CLOUD_API_KEY") else key_name(int(name))
+        if current.pop(name, None) is None:
+            print(f"{name} is not in {target}")
+        else:
+            print(f"Removed {name}")
     if source:
-        incoming = read_env_file(Path(source).expanduser())
-        if not incoming:
+        found = read_env_file(Path(source).expanduser())
+        if not found:
             raise SystemExit(f"No LLAMA_CLOUD_API_KEY entries in {source}.")
-        current.update(incoming)
-        names = sorted(set(names) | set(incoming), key=lambda n: int(KEY_PATTERN.match(n).group(1) or 1))
-        print(f"Imported {', '.join(sorted(incoming))} from {source}")
-    else:
-        if not sys.stdin.isatty():
-            raise SystemExit("--setup needs a terminal to type keys into. Run it yourself in a terminal, "
-                             "or import an existing file with --setup --from PATH/.env")
-        print(f"Saving LlamaCloud keys to {target}. Input is hidden.")
-        print("Press Enter to keep the current value, or type - to remove a key.")
-        for name in names:
-            status = "set" if current.get(name) else "empty"
-            value = getpass.getpass(f"  {name} [{status}]: ").strip()
-            if value == "-":
-                current.pop(name, None)
-            elif value:
-                current[name] = value
+        incoming = [found[n] for n in sorted(found, key=key_number)]
+    elif not remove and not sys.stdin.isatty():
+        incoming = [line.strip() for line in sys.stdin if line.strip()]  # e.g. echo "$KEY" | parsepdf.py --add-key
+        if not incoming:
+            raise SystemExit("--add-key needs a terminal to type keys into. Run it yourself in a terminal, "
+                             "or import an existing file with --add-key --from PATH/.env")
+    elif not remove:
+        print(f"Keys in {target}: {', '.join(sorted(current, key=key_number)) or 'none'}")
+        print("Paste each new LlamaCloud key and press Enter (input is hidden). Press Enter on an empty line to finish.")
+        while value := getpass.getpass("  new key: ").strip():
+            incoming.append(value)
+
+    added = []
+    for value in incoming:
+        if value in current.values():
+            print("  skipped a key that is already saved")
+            continue
+        number = max(map(key_number, current), default=0) + 1
+        current[key_name(number)] = value
+        added.append(key_name(number))
+    if added:
+        print("Added " + ", ".join(added))
 
     try:
         existing_lines = target.read_text(encoding="utf-8-sig").splitlines() if target.is_file() else []
@@ -432,7 +453,7 @@ def setup(target: Path, source: str | None) -> int:
     kept = [line for line in existing_lines
             if not KEY_PATTERN.match(line.split("=", 1)[0].replace("export", "").strip())]
     lines = kept or ["# LlamaCloud keys for the parsepdf skill. Do not commit this file."]
-    lines += [f"{name}={current[name]}" for name in names if current.get(name)]
+    lines += [f"{name}={current[name]}" for name in sorted(current, key=key_number)]
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text("\n".join(lines) + "\n", encoding="utf-8")
     try:
@@ -441,8 +462,7 @@ def setup(target: Path, source: str | None) -> int:
         pass
     STATE_FILE.unlink(missing_ok=True)  # new keys start with a clean health record
 
-    keys = sorted((Key(n, int(KEY_PATTERN.match(n).group(1) or 1), v) for n, v in read_env_file(target).items()),
-                  key=lambda key: key.index)
+    keys = sorted((Key(n, key_number(n), v) for n, v in read_env_file(target).items()), key=lambda key: key.index)
     shadowed = [k for k in keys if os.getenv(k.name)]
     print(f"Saved {len(keys)} key(s). Checking them with LlamaCloud (no credits used):")
     code = asyncio.run(verify_keys(keys))
@@ -481,17 +501,20 @@ def main() -> None:
     parser.add_argument("--overwrite", action="store_true", help="re-parse PDFs that already have output")
     parser.add_argument("--env-file", help="path to a .env file holding the keys")
     parser.add_argument("--check", action="store_true", help="list configured key names and health, then exit")
-    parser.add_argument("--setup", action="store_true",
-                        help="save keys to ~/.config/parsepdf/.env (or --env-file) via hidden prompts, then verify")
+    parser.add_argument("--add-key", "--setup", dest="setup", action="store_true",
+                        help="add keys to ~/.config/parsepdf/.env (or --env-file) as the next KEY numbers, "
+                             "via hidden prompts, then verify")
     parser.add_argument("--from", dest="from_file", metavar="PATH",
-                        help="with --setup: copy the keys from an existing .env instead of prompting")
+                        help="with --add-key: copy every key from an existing .env instead of prompting")
+    parser.add_argument("--remove-key", action="append", default=[], metavar="NAME",
+                        help="remove a saved key, e.g. LLAMA_CLOUD_API_KEY3 or just 3")
     parser.add_argument("--verify", action="store_true", help="test each key with LlamaCloud (no credits used)")
     parser.add_argument("--reset-state", action="store_true", help="forget saved key cooldowns and failures")
     args = parser.parse_args()
 
-    if args.setup or args.from_file:
+    if args.setup or args.from_file or args.remove_key:
         target = Path(args.env_file or CONFIG_ENV).expanduser()
-        sys.exit(setup(target, args.from_file))
+        sys.exit(setup(target, args.from_file, args.remove_key))
     env_file = find_env_file(args.env_file)
     keys = load_keys(env_file)
     if args.reset_state:
@@ -508,8 +531,8 @@ def main() -> None:
             sys.exit(0)
         parser.error("give at least one PDF, folder or URL")
     if not keys:
-        raise SystemExit("No LlamaCloud keys found. Run `parsepdf.py --setup` in a terminal to enter them, "
-                         "or `--setup --from PATH/.env` to copy them from an existing .env.")
+        raise SystemExit("No LlamaCloud keys found. Run `parsepdf.py --add-key` in a terminal to enter them, "
+                         "or `--add-key --from PATH/.env` to copy them from an existing .env.")
     try:
         import llama_cloud  # noqa: F401
     except ImportError:
