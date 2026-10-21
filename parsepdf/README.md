@@ -36,10 +36,25 @@ On Windows PowerShell: `Copy-Item -Recurse agents_skills\parsepdf $HOME\.claude\
 pip install -r requirements.txt   # llama-cloud>=1.4
 ```
 
-**3. Add your keys.** Copy `.env.example` to `.env` and fill in your LlamaCloud keys. The script looks for `.env` in the current folder and its parents, then in the skill folder, then in `~/.config/parsepdf/.env`. Environment variables take precedence. Never commit the filled-in `.env`.
+**3. Add or update your keys** with one command. Run it in your own terminal:
 
 ```bash
-python scripts/parsepdf.py --check   # shows which key names were found; no credits used
+python ~/.claude/skills/parsepdf/scripts/parsepdf.py --setup
+```
+
+It asks for `LLAMA_CLOUD_API_KEY` to `LLAMA_CLOUD_API_KEY4` with hidden input. Press Enter to keep a key or type `-` to remove one. It saves them to `~/.config/parsepdf/.env`, which every project and agent on the machine uses, and then tests each key without spending credits. Run the same command again whenever a key changes.
+
+If your keys are already in a `.env` somewhere, copy them over instead:
+
+```bash
+python ~/.claude/skills/parsepdf/scripts/parsepdf.py --setup --from ~/MyProjects/miccai2026/.env
+```
+
+An agent can run the `--from` version for you, so the keys never pass through the chat. When you ask an agent to install the skill, it checks for keys and tells you which of the two commands to run. You can also keep keys in environment variables, which take precedence, or in a project `.env` (see `.env.example`).
+
+```bash
+python scripts/parsepdf.py --check    # which key names were found
+python scripts/parsepdf.py --verify   # test each key with LlamaCloud, no credits used
 ```
 
 ## Use it
@@ -68,7 +83,8 @@ python scripts/parsepdf.py short.pdf --stdout             # print the Markdown
 | `--json` | One JSON object per PDF on stdout. |
 | `--overwrite` | Re-parse PDFs that already have output. |
 | `--env-file PATH` | Use a specific `.env`. |
-| `--check` | List configured keys and whether each is usable. |
+| `--setup [--from PATH]` | Save or update keys in `~/.config/parsepdf/.env` (hidden prompts, or copied from a `.env`), then test them. |
+| `--check` / `--verify` | List configured keys and their saved health / test each key with LlamaCloud. |
 | `--reset-state` | Forget saved key cooldowns (stored in `~/.cache/parsepdf/key_state.json`, names and hashes only). |
 
 ## Tiers

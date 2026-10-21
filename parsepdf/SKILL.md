@@ -23,7 +23,7 @@ Other options:
 - `--stdout` prints the Markdown instead of writing files (good for a short PDF).
 - `--json` prints one JSON object per PDF (`source`, `output`, `tier`, `pages`, `credits`, `key`).
 - `--overwrite` re-parses PDFs that already have output. Without it, existing outputs are skipped, so reruns cost nothing.
-- `--check` lists which key names are configured and whether each is usable, without spending credits.
+- `--check` lists which key names are configured and whether each is usable, without spending credits. `--verify` also tests each key with LlamaCloud, still with no credits used.
 - `--env-file PATH` points at a specific `.env`.
 
 ## Choosing the tier
@@ -33,6 +33,15 @@ Other options:
 - `--tier fast` (1 credit per page, plain text, no tables) and `--tier agentic_plus` also exist. Use them only when asked.
 
 Agentic output is saved as `<name>.agentic.md`, so it never overwrites the cost_effective file.
+
+## Installing or updating keys
+
+Whenever the user installs this skill, or asks to add, change or update their LlamaCloud keys:
+
+1. Run `python scripts/parsepdf.py --check` to see which key names are configured. It uses no credits.
+2. If the user already has a `.env` with the keys (for example in another project), run `python scripts/parsepdf.py --setup --from <that .env>`. This copies the four `LLAMA_CLOUD_API_KEY*` entries into `~/.config/parsepdf/.env` and tests each key, so every project and agent on the machine picks them up. You never see the values.
+3. Otherwise, ask the user to run `python <path to this skill>/scripts/parsepdf.py --setup` in their own terminal. Give them the full path. It prompts for each of the four keys with hidden input (Enter keeps a key, `-` removes it), saves them and tests them. Do not run `--setup` without `--from` yourself, because it needs a person at the keyboard. Never ask for keys in the chat.
+4. Run `--verify` to confirm that every key reports `ok`.
 
 ## Keys
 
@@ -44,7 +53,7 @@ Never print, log or commit key values. Report keys by name only, as `--check` do
 
 ## When something fails
 
-- "No LlamaCloud keys found": ask the user to create a `.env` from `.env.example`. Do not ask them to paste keys into the chat.
+- "No LlamaCloud keys found": follow "Installing or updating keys" above. Do not ask the user to paste keys into the chat.
 - "No usable LlamaCloud key right now": run `--check` and tell the user which keys are cooling down or disabled.
 - A URL that the agent cannot download can still be passed directly, because LlamaCloud fetches it on its own servers.
 - The exit code is 1 if any PDF failed. The other PDFs in the batch are still written.
