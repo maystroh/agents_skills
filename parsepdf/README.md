@@ -15,54 +15,48 @@ The skill is a standard `SKILL.md` plus one standalone Python script, so it work
 
 ## Install
 
-**1. Copy the skill folder** to where your agent looks for skills:
+**1. Install the skill.** In Codex, paste:
 
-| Agent | Skill folder |
+```text
+$skill-installer install the parsepdf skill from https://github.com/maystroh/agents_skills/tree/main/parsepdf
+```
+
+For Claude Code, copy this folder to `~/.claude/skills/parsepdf/`. For other agents, point them at `SKILL.md`.
+
+**2. Install the dependency:**
+
+```bash
+pip install "llama-cloud>=1.4"
+```
+
+**3. Add your keys.** Copy them from an existing `.env`:
+
+```bash
+python ~/.codex/skills/parsepdf/scripts/parsepdf.py --add-key --from path/to/.env
+```
+
+Or type them in: run `--add-key` without `--from`, paste each key (input is hidden) and press Enter on an empty line to finish. Each key is tested, and every key should show `ok`. Later, run `--add-key` again to add a new key. It is saved as the next number.
+
+On Windows, write the path as `$HOME\.codex\skills\parsepdf\scripts\parsepdf.py`. For Claude Code, use `.claude` instead of `.codex`.
+
+### Managing keys
+
+Keys are saved in `~/.config/parsepdf/.env` as `LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, `LLAMA_CLOUD_API_KEY3` and so on, and every agent on the machine uses them. Environment variables, or a `.env` in your project folder, take precedence.
+
+| Command | Effect |
 | --- | --- |
-| Claude Code | `~/.claude/skills/parsepdf/` (or `.claude/skills/parsepdf/` in a project) |
-| Codex | `~/.codex/skills/parsepdf/`, or ask Codex: `$skill-installer install the parsepdf skill from https://github.com/maystroh/agents_skills/tree/main/parsepdf` |
-| Other agents | Anywhere. Point the agent at `SKILL.md` (for example from `AGENTS.md` or Cursor rules). |
-
-```bash
-git clone --depth 1 https://github.com/maystroh/agents_skills /tmp/agents_skills
-mkdir -p ~/.claude/skills && cp -r /tmp/agents_skills/parsepdf ~/.claude/skills/
-```
-
-On Windows PowerShell: `Copy-Item -Recurse agents_skills\parsepdf $HOME\.claude\skills\`.
-
-**2. Install the dependency**, unless you use [uv](https://docs.astral.sh/uv/), which installs it on the fly with `uv run`:
-
-```bash
-pip install -r requirements.txt   # llama-cloud>=1.4
-```
-
-**3. Add your keys** with one command. Run it in your own terminal:
-
-```bash
-python ~/.claude/skills/parsepdf/scripts/parsepdf.py --add-key
-```
-
-Paste each key and press Enter. Input is hidden, and an empty line finishes. Each key is appended to `~/.config/parsepdf/.env` as the next number (`LLAMA_CLOUD_API_KEY`, `LLAMA_CLOUD_API_KEY2`, ...), which every project and agent on the machine uses. Then each key is tested without spending credits. Whenever you get a new key, run the same command again and it becomes `LLAMA_CLOUD_API_KEY5`, `LLAMA_CLOUD_API_KEY6` and so on. Keys that are already saved are skipped, and `--remove-key 3` drops `LLAMA_CLOUD_API_KEY3`.
-
-If your keys are already in a `.env` somewhere, copy them over instead:
-
-```bash
-python ~/.claude/skills/parsepdf/scripts/parsepdf.py --add-key --from ~/MyProjects/miccai2026/.env
-```
-
-An agent can run the `--from` version for you, or you can pipe a key in with `echo "$KEY" | parsepdf.py --add-key`, so the keys never pass through the chat. When you ask an agent to install the skill, it checks for keys and tells you which of the two commands to run. You can also keep keys in environment variables, which take precedence, or in a project `.env` (see `.env.example`).
-
-```bash
-python scripts/parsepdf.py --check    # which key names were found
-python scripts/parsepdf.py --verify   # test each key with LlamaCloud, no credits used
-```
+| `--add-key` | Add new keys with hidden prompts, numbered after the existing ones. Duplicates are skipped. |
+| `--add-key --from FILE` | Import every `LLAMA_CLOUD_API_KEY*` from a `.env`. Safe for an agent to run. |
+| `--remove-key 3` | Remove `LLAMA_CLOUD_API_KEY3`. |
+| `--check` | List the saved key names and whether each is usable. |
+| `--verify` | Test each key with LlamaCloud. No credits are used. |
 
 ## Use it
 
 Ask your agent, for example:
 
 ```text
-Use parsepdf on ~/papers/ and summarize the results tables.
+Use $parsepdf on ~/papers/ and summarize the results tables.
 Parse https://example.org/paper.pdf with parsepdf in agentic mode.
 ```
 
@@ -83,9 +77,6 @@ python scripts/parsepdf.py short.pdf --stdout             # print the Markdown
 | `--json` | One JSON object per PDF on stdout. |
 | `--overwrite` | Re-parse PDFs that already have output. |
 | `--env-file PATH` | Use a specific `.env`. |
-| `--add-key [--from PATH]` | Append new keys to `~/.config/parsepdf/.env` as the next numbers (hidden prompts, or copied from a `.env`), then test them. |
-| `--remove-key N` | Remove `LLAMA_CLOUD_API_KEY<N>`. |
-| `--check` / `--verify` | List configured keys and their saved health / test each key with LlamaCloud. |
 | `--reset-state` | Forget saved key cooldowns (stored in `~/.cache/parsepdf/key_state.json`, names and hashes only). |
 
 ## Tiers
