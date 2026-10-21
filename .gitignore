@@ -9,3 +9,7 @@
 *.nrrd
 *.npz
 *.npy
+.env
+.env.*
+!.env.example
+**/parsed_pdfs/
