@@ -21,7 +21,19 @@ The skill is a standard `SKILL.md` plus one standalone Python script, so it work
 $skill-installer install the parsepdf skill from https://github.com/maystroh/agents_skills/tree/main/parsepdf
 ```
 
-For Claude Code, copy this folder to `~/.claude/skills/parsepdf/`. For other agents, point them at `SKILL.md`.
+In Claude Code, paste:
+
+```text
+Install the skill from https://github.com/maystroh/agents_skills/tree/main/parsepdf into ~/.claude/skills/parsepdf
+```
+
+In any other agent that can run shell commands (Cursor, Gemini CLI and so on), paste:
+
+```text
+Install the skill from https://github.com/maystroh/agents_skills/tree/main/parsepdf into your skills folder, or reference its SKILL.md from AGENTS.md if you don't have one
+```
+
+Start a new session afterwards so the agent loads the skill.
 
 **2. Ask the agent to set it up.** In a new chat, say:
 
